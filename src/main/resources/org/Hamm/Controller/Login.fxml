@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.LoginController">
+
+    <VBox alignment="CENTER" layoutX="169.0" layoutY="84.0" prefHeight="231.0" prefWidth="261.0" spacing="10" style="-fx-background-color: white;">
+        <Label text="Email:">
+            <font>
+                <Font name="Britannic Bold" size="20.0" />
+            </font>
+        </Label>
+        <TextField fx:id="emailField" text="ejemplo@test.com">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </TextField>
+
+        <Label text="Password:">
+            <font>
+                <Font name="Britannic Bold" size="20.0" />
+            </font>
+        </Label>
+        <PasswordField fx:id="passwordField" text="1234">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </PasswordField>
+
+        <HBox alignment="CENTER" spacing="10">
+            <Button onAction="#login" text="Login">
+                <font>
+                    <Font name="Britannic Bold" size="15.0" />
+                </font>
+            </Button>
+
+            <Button onAction="#register" text="Register">
+                <font>
+                    <Font name="Britannic Bold" size="15.0" />
+                </font>
+            </Button>
+
+        </HBox>
+
+        <Label fx:id="errorLabel" textFill="RED">
+            <font>
+                <Font name="Britannic Bold" size="15.0" />
+            </font>
+        </Label>
+    </VBox>
+
+    <Label layoutX="216.0" layoutY="41.0" text="CINES HAMM">
+        <font>
+            <Font name="Britannic Bold" size="30.0" />
+        </font>
+    </Label>
+
+</AnchorPane>

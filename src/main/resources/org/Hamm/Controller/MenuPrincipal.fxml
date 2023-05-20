@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.MenuPrincipalController">
+   <children>
+      <Label fx:id="userIdLabel" layoutX="480.0" layoutY="20.0" />
+
+      <Button layoutX="86.0" layoutY="93.0" mnemonicParsing="false" onAction="#handleMoviesButton" prefHeight="118.0" prefWidth="198.0" style="-fx-background-color: BLUE;" text="FILMS">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Button>
+
+
+      <Button layoutX="318.0" layoutY="93.0" mnemonicParsing="false" prefHeight="118.0" prefWidth="198.0" style="-fx-background-color: yellow;" text="ADD CAR" onAction="#handleCarButton">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="87.0" layoutY="241.0" mnemonicParsing="false" prefHeight="118.0" prefWidth="198.0" style="-fx-background-color: brown;" text="BOOKINGS" onAction="#handleBookingsButton">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Button>
+
+      <Button layoutX="318.0" layoutY="240.0" mnemonicParsing="false" prefHeight="118.0" prefWidth="198.0" text="SIGN OFF">
+         <font>
+            <Font name="Britannic Bold" size="23.0" />
+         </font>
+      </Button>
+      <Label layoutX="216.0" layoutY="42.0" text="CINES HAMM">
+         <font>
+            <Font name="Britannic Bold" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

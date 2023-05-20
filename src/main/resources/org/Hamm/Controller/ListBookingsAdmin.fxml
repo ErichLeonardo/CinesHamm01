@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="362.0" prefWidth="826.0" stylesheets="styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.ListBookingsControllerAdmin">
+   <children>
+      <TableView fx:id="tableView" layoutX="22.0" layoutY="70.0" prefHeight="259.0" prefWidth="554.0">
+          <columns>
+              <TableColumn fx:id="idColumn" prefWidth="104.00003433227539" text="id_reservation">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="id_reservation" />
+                  </cellValueFactory>
+              </TableColumn>
+              <TableColumn fx:id="userColumn" prefWidth="72.79995727539062" text="id_user">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="user" />
+                  </cellValueFactory>
+              </TableColumn>
+              <TableColumn fx:id="carColumn" prefWidth="67.19999694824219" text="tuition">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="car" />
+                  </cellValueFactory>
+              </TableColumn>
+              <TableColumn fx:id="filmColumn" prefWidth="84.0" text="id_film">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="film" />
+                  </cellValueFactory>
+              </TableColumn>
+              <TableColumn fx:id="dateColumn" prefWidth="68.0" text="Date">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="date" />
+                  </cellValueFactory>
+              </TableColumn>
+              <TableColumn fx:id="timeColumn" prefWidth="68.0" text="Time">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="time" />
+                  </cellValueFactory>
+              </TableColumn>
+              <TableColumn fx:id="locationColumn" minWidth="0.0" prefWidth="86.4000244140625" text="Location">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="location" />
+                  </cellValueFactory>
+              </TableColumn>
+          </columns>
+
+      </TableView>
+      <Button layoutX="746.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="370.0" layoutY="21.0" text="CINES HAMM">
+         <font>
+            <Font name="Britannic Bold" size="30.0" />
+         </font>
+      </Label>
+       <DatePicker fx:id="datePicker" layoutX="661.0" layoutY="194.0" prefHeight="26.0" prefWidth="150.0" />
+       <ComboBox fx:id="timeComboBox" layoutX="662.0" layoutY="233.0" prefHeight="26.0" prefWidth="66.0">
+           <items>
+               <FXCollections fx:factory="observableArrayList">
+                   <String fx:value="16:00" />
+                   <String fx:value="18:00" />
+                   <String fx:value="20:00" />
+                   <String fx:value="22:00" />
+               </FXCollections>
+           </items>
+       </ComboBox>
+       <ComboBox fx:id="locationComboBox" layoutX="744.0" layoutY="234.0" prefHeight="26.0" prefWidth="66.0">
+           <items>
+               <FXCollections fx:factory="observableArrayList">
+                   <String fx:value="loc1" />
+                   <String fx:value="loc2" />
+                   <String fx:value="loc3" />
+                   <String fx:value="loc4" />
+                   <String fx:value="loc5" />
+                   <String fx:value="loc6" />
+                   <String fx:value="loc7" />
+                   <String fx:value="loc8" />
+                   <String fx:value="loc9" />
+                   <String fx:value="loc10" />
+                   <String fx:value="loc11" />
+                   <String fx:value="loc12" />
+                   <String fx:value="loc13" />
+                   <String fx:value="loc14" />
+                   <String fx:value="loc15" />
+                   <String fx:value="loc16" />
+                   <String fx:value="loc17" />
+                   <String fx:value="loc18" />
+                   <String fx:value="loc19" />
+                   <String fx:value="loc20" />
+               </FXCollections>
+           </items>
+       </ComboBox>
+      <Button layoutX="688.0" layoutY="304.0" mnemonicParsing="false" text="Add" onAction="#handleAddButton">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="595.0" layoutY="85.0" text="ID_USER">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="595.0" layoutY="123.0" text="TUITION">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="595.0" layoutY="158.0" text="ID_FILM">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+       <TextField fx:id="idUserField" layoutX="662.0" layoutY="81.0" />
+       <TextField fx:id="tuitionCarField" layoutX="662.0" layoutY="119.0" />
+       <TextField fx:id="idFilmField" layoutX="662.0" layoutY="154.0" />
+      <Button layoutX="617.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleMoviesButton" text="FILMS">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="595.0" layoutY="198.0" text="DATE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="595.0" layoutY="238.0" text="TIME/LOC.">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

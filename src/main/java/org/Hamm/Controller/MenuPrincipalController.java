@@ -1,0 +1,78 @@
+package org.Hamm.Controller;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import org.Hamm.Test.Test2View;
+
+import java.io.IOException;
+import java.sql.Connection;
+
+public class MenuPrincipalController {
+    @FXML
+    private Label userIdLabel;
+
+    private int userId;
+    private Connection connection;
+
+    public void initialize() {
+        userIdLabel.setText("ID user: " + userId);
+    }
+
+    public void setUserId(int id_user) {
+        this.userId = id_user;
+        initialize(); // Actualizar la etiqueta con el nuevo valor de userId
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
+    @FXML
+    private void handleMoviesButton() {
+        Test2View.getInstance().handleMoviesButton();
+    }
+
+    @FXML
+    public void handleBookingsButton() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/ListBookings.fxml"));
+            Parent bookingsRoot = fxmlLoader.load();
+
+            Stage bookingsStage = new Stage();
+            bookingsStage.setTitle("Booking List");
+            bookingsStage.setScene(new Scene(bookingsRoot, 880, 380));
+
+            ListBookingsController bookingsController = fxmlLoader.getController();
+            bookingsController.setConnection(connection); // Pasar la conexión al controlador de la lista de reservas
+
+            bookingsStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleCarButton() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/AddCar.fxml"));
+            Parent carRoot = fxmlLoader.load();
+
+            Stage carStage = new Stage();
+            carStage.setTitle("Car");
+            carStage.setScene(new Scene(carRoot, 600, 500));
+
+            CarController carController = fxmlLoader.getController();
+            carController.setConnection(connection); // Pasar la conexión al controlador de coches
+
+            carStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+}
