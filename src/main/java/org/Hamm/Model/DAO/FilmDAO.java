@@ -13,11 +13,22 @@ import java.util.List;
 public class FilmDAO implements DAO<Film> {
 
     private static final String FIND_ALL = "SELECT * FROM Film";
+// Consulta SQL para recuperar todos los registros de películas de la base de datos
+
     private static final String FIND_BY_ID = "SELECT * FROM Film WHERE id_film = ?";
+// Consulta SQL para buscar una película por su ID en la base de datos
+
     private static final String FIND_BY_TITLE = "SELECT * FROM Film WHERE title = ?";
+// Consulta SQL para buscar una película por su título en la base de datos
+
     private static final String INSERT = "INSERT INTO Film (id_film, title, genre, duration, synopsis) VALUES (?, ?, ?, ?, ?)";
+// Consulta SQL para insertar un nuevo registro de película en la base de datos
+
     private static final String DELETE = "DELETE FROM Film WHERE id_film = ?";
+// Consulta SQL para eliminar un registro de película de la base de datos
+
     private static final String UPDATE = "UPDATE Film SET title = ?, genre = ?, duration = ?, synopsis = ? WHERE id_film = ?";
+// Consulta SQL para actualizar un registro de película en la base de datos
 
     private Connection connection;
 
@@ -29,7 +40,12 @@ public class FilmDAO implements DAO<Film> {
         this.connection = ConnectionMySQL.getConnect();
     }
 
-
+    /**
+     * Recupera todos los registros de películas de la base de datos.
+     *
+     * @return una lista de objetos Film que representa todas las películas
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public List<Film> findAll() throws SQLException {
         List<Film> films = new ArrayList<>();
@@ -49,6 +65,13 @@ public class FilmDAO implements DAO<Film> {
         return films;
     }
 
+    /**
+     * Busca una película por su ID en la base de datos.
+     *
+     * @param id el ID de la película a buscar
+     * @return el objeto Film correspondiente al ID proporcionado, o null si no se encuentra
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public Film findById(int id) throws SQLException {
         Film film = null;
@@ -68,6 +91,13 @@ public class FilmDAO implements DAO<Film> {
         return film;
     }
 
+    /**
+     * Inserta un nuevo registro de película en la base de datos.
+     *
+     * @param entity el objeto Film a insertar
+     * @return el objeto Film insertado
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public Film insert(Film entity) throws SQLException {
         Film existingFilm = findById(entity.getId_film());
@@ -89,6 +119,12 @@ public class FilmDAO implements DAO<Film> {
         return entity;
     }
 
+    /**
+     * Elimina un registro de película de la base de datos.
+     *
+     * @param entity el objeto Film a eliminar
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public void delete(Film entity) throws SQLException {
         try (PreparedStatement stmt = connection.prepareStatement(DELETE)) {
@@ -97,6 +133,13 @@ public class FilmDAO implements DAO<Film> {
         }
     }
 
+    /**
+     * Actualiza un registro de película en la base de datos.
+     *
+     * @param entity el objeto Film con los datos actualizados
+     * @return el objeto Film actualizado
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public Film update(Film entity) throws SQLException {
         try (PreparedStatement stmt = connection.prepareStatement(UPDATE)) {
@@ -110,6 +153,13 @@ public class FilmDAO implements DAO<Film> {
         return entity;
     }
 
+    /**
+     * Busca una película por su título en la base de datos.
+     *
+     * @param title el título de la película a buscar
+     * @return el objeto Film correspondiente al título proporcionado, o null si no se encuentra
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     private Film findByTitle(String title) throws SQLException {
         try (PreparedStatement stmt = connection.prepareStatement(FIND_BY_TITLE)) {
             stmt.setString(1, title);
@@ -127,6 +177,11 @@ public class FilmDAO implements DAO<Film> {
         }
     }
 
+    /**
+     * Cierra la conexión a la base de datos.
+     *
+     * @throws Exception si ocurre algún error al cerrar la conexión
+     */
     @Override
     public void close() throws Exception {
         if (connection != null) {

@@ -14,13 +14,27 @@ import java.util.List;
 
 public class UserDAO implements DAO<User> {
 
+    // Consulta para recuperar todos los usuarios de la tabla "User" con sus respectivos campos
     private static final String FIND_ALL = "SELECT id_user, email, name, surname, phone, isAdmin FROM User";
+
+    // Consulta para recuperar un usuario de la tabla "User" que coincida con el ID proporcionado
     private static final String FIND_BY_ID = "SELECT id_user, email, name, surname, phone, isAdmin FROM User WHERE id_user = ?";
+
+    // Consulta para recuperar un usuario de la tabla "User" que coincida con el correo electrónico proporcionado
     private static final String FIND_BY_EMAIL = "SELECT id_user, email, password, name, surname, phone, isAdmin FROM User WHERE email = ?";
+
+    // Consulta para insertar un nuevo usuario en la tabla "User" con los valores proporcionados
     private static final String INSERT = "INSERT INTO User (email, password, name, surname, phone, isAdmin) VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE User SET email = ?, password=?,name = ?,  surname = ?, phone = ? WHERE id_user = ?";
+
+    // Consulta para actualizar los campos de un usuario existente en la tabla "User"
+    private static final String UPDATE = "UPDATE User SET email = ?, password=?, name = ?, surname = ?, phone = ? WHERE id_user = ?";
+
+    // Consulta para eliminar un usuario de la tabla "User" según el ID proporcionado
     private static final String DELETE = "DELETE FROM User WHERE id_user = ?";
+
+    // Consulta para actualizar el estado de administrador de un usuario en la tabla "User"
     private static final String MAKE_ADMIN = "UPDATE User SET isAdmin = ? WHERE id_user = ?";
+
 
     private Connection connection;
 
@@ -33,6 +47,13 @@ public class UserDAO implements DAO<User> {
     }
 
 
+    /**
+     * Busca un usuario por su correo electrónico en la base de datos.
+     *
+     * @param email el correo electrónico del usuario a buscar
+     * @return el usuario encontrado o null si no se encontró ningún usuario con el correo electrónico dado
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     public User findByEmail(String email) throws SQLException {
         User user = null;
         try (PreparedStatement ps = connection.prepareStatement(FIND_BY_EMAIL)) {
@@ -53,6 +74,12 @@ public class UserDAO implements DAO<User> {
         return user;
     }
 
+    /**
+     * Obtiene una lista de todos los usuarios almacenados en la base de datos.
+     *
+     * @return la lista de usuarios
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public List<User> findAll() throws SQLException {
         List<User> userList = new ArrayList<>();
@@ -72,7 +99,13 @@ public class UserDAO implements DAO<User> {
         return userList;
     }
 
-
+    /**
+     * Busca un usuario por su ID en la base de datos.
+     *
+     * @param id el ID del usuario a buscar
+     * @return el usuario encontrado o null si no se encontró ningún usuario con el ID dado
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public User findById(int id) throws SQLException {
         User user = null;
@@ -93,6 +126,13 @@ public class UserDAO implements DAO<User> {
         return user;
     }
 
+    /**
+     * Inserta un nuevo usuario en la base de datos.
+     *
+     * @param entity el usuario a insertar
+     * @return el usuario insertado con su ID generado, o null si no se pudo insertar el usuario
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public User insert(User entity) throws SQLException {
         User user = null;
@@ -138,6 +178,11 @@ public class UserDAO implements DAO<User> {
         return user;
     }
 
+    /**
+     * Elimina un usuario de la base de datos.
+     *
+     * @param entity el usuario a eliminar
+     */
     @Override
     public void delete(User entity) {
         if (entity.isIs_admin()) {
@@ -152,6 +197,13 @@ public class UserDAO implements DAO<User> {
         }
     }
 
+    /**
+     * Actualiza los datos de un usuario en la base de datos.
+     *
+     * @param entity el usuario con los nuevos datos
+     * @return el usuario actualizado o null si no se pudo actualizar el usuario
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public User update(User entity) throws SQLException {
         User user = null;
@@ -180,6 +232,13 @@ public class UserDAO implements DAO<User> {
         return user;
     }
 
+    /**
+     * Asigna el estado de administrador a un usuario en la base de datos.
+     *
+     * @param entity el usuario al que se desea asignar el estado de administrador
+     * @return el usuario con el estado de administrador actualizado
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     public User makeAdmin(User entity) throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement(MAKE_ADMIN)) {
             ps.setBoolean(1, true);
@@ -189,6 +248,13 @@ public class UserDAO implements DAO<User> {
         return entity;
     }
 
+    /**
+     * Verifica si una contraseña sin cifrar coincide con una contraseña cifrada.
+     *
+     * @param plainPassword   la contraseña sin cifrar
+     * @param hashedPassword  la contraseña cifrada
+     * @return true si las contraseñas coinciden, false en caso contrario
+     */
     public static boolean verifyPassword(String plainPassword, String hashedPassword) {
         return PasswordUtils.verifyPassword(plainPassword, hashedPassword);
     }

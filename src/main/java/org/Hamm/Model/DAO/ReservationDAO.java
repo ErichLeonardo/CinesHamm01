@@ -28,18 +28,42 @@ public class ReservationDAO implements DAO<Reservation> {
         this.connection = ConnectionMySQL.getConnect();
     }
 
+    // Consulta para recuperar todas las reservas de la tabla "Reservation" con todos los campos
     private static final String FIND_ALL = "SELECT * FROM Reservation";
+
+    // Consulta para recuperar una reserva de la tabla "Reservation" que coincida con el ID proporcionado
     private static final String FIND_BY_ID = "SELECT * FROM Reservation WHERE id_reservation=?";
+
+    // Consulta para recuperar las reservas de la tabla "Reservation" que correspondan a un ID de película proporcionado
     private static final String FIND_BY_ID_FILM = "SELECT * FROM Reservation JOIN Film on Reservation.id_film=Film.id.film WHERE ID_FILM=?";
+
+    // Consulta para insertar una nueva reserva en la tabla "Reservation" con los valores proporcionados
     private final static String INSERT_RESERVATION = "INSERT INTO Reservation(id_user, tuition_car, id_film, day, hour, location) VALUES(?,?,?,?,?,?)";
+
+    // Consulta para verificar si existen reservas duplicadas para un usuario, día y hora especificados
     private final static String FIND_DUPLICATE_RESERVATIONS = "SELECT * FROM Reservation WHERE id_user=? AND day=? AND hour=?";
+
+    // Consulta para verificar si existen reservas conflictivas para un día, hora y ubicación especificados
     private final static String FIND_CONFLICTING_RESERVATIONS = "SELECT * FROM Reservation WHERE day=? AND hour=? AND location=?";
+
+    // Consulta para eliminar una reserva de la tabla "Reservation" según el ID proporcionado
     private final static String DELETE_RESERVATION = "DELETE FROM Reservation WHERE id_reservation=?";
+
+    // Consulta para verificar la existencia de una reserva en la tabla "Reservation" según el ID proporcionado
     private final static String CHECK_RESERVATION_EXISTENCE = "SELECT COUNT(*) FROM Reservation WHERE id_reservation = ?";
+
+    // Consulta para actualizar una reserva existente en la tabla "Reservation" con los valores proporcionados
     private final static String UPDATE_RESERVATION = "UPDATE Reservation SET id_user = ?, id_car = ?, id_film = ?, day = ?, hour = ?, location = ? WHERE id_reservation = ?";
+
+    // Consulta para contar el número de reservas para una película en una fecha y hora específicas
     private final static String COUNT_RESERVATIONS_BY_DATE_TIME_AND_FILM = "SELECT COUNT(*) FROM reservation WHERE id_film = ? AND day = ? AND hour = ?";
 
-
+    /**
+     * Retrieves all reservations from the database.
+     *
+     * @return a list of reservations
+     * @throws SQLException if a database error occurs
+     */
     @Override
     public List<Reservation> findAll() throws SQLException {
         List<Reservation> reservations = new ArrayList<>();
@@ -60,6 +84,13 @@ public class ReservationDAO implements DAO<Reservation> {
         return reservations;
     }
 
+    /**
+     * Retrieves a reservation from the database based on the provided ID.
+     *
+     * @param id the ID of the reservation
+     * @return the reservation object
+     * @throws SQLException if a database error occurs
+     */
     @Override
     public Reservation findById(int id) throws SQLException {
         Reservation reservation = null;
@@ -80,6 +111,13 @@ public class ReservationDAO implements DAO<Reservation> {
         return reservation;
     }
 
+    /**
+     * Inserts a new reservation into the database.
+     *
+     * @param entity the reservation to insert
+     * @return the inserted reservation object
+     * @throws SQLException if a database error occurs
+     */
     @Override
     public Reservation insert(Reservation entity) throws SQLException {
         try (PreparedStatement psCheck = connection.prepareStatement(FIND_DUPLICATE_RESERVATIONS)) {
@@ -119,8 +157,12 @@ public class ReservationDAO implements DAO<Reservation> {
         return entity;
     }
 
-
-
+    /**
+     * Deletes a reservation from the database.
+     *
+     * @param entity the reservation to delete
+     * @throws SQLException if a database error occurs
+     */
     @Override
     public void delete(Reservation entity) throws SQLException {
         try (Connection connection = ConnectionMySQL.getConnect();
@@ -130,7 +172,13 @@ public class ReservationDAO implements DAO<Reservation> {
         }
     }
 
-
+    /**
+     * Updates an existing reservation in the database.
+     *
+     * @param entity the reservation to update
+     * @return the updated reservation object
+     * @throws SQLException if a database error occurs
+     */
     @Override
     public Reservation update(Reservation entity) throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement(CHECK_RESERVATION_EXISTENCE)) {
@@ -156,6 +204,13 @@ public class ReservationDAO implements DAO<Reservation> {
         return entity;
     }
 
+    /**
+     * Checks the maximum number of reservations for a specific film at a given date and time.
+     *
+     * @param dateTime the date and time of the reservation
+     * @param filmId   the ID of the film
+     * @throws SQLException if a database error occurs
+     */
     public void checkMaxReservations(LocalDateTime dateTime, int filmId) throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement(COUNT_RESERVATIONS_BY_DATE_TIME_AND_FILM)) {
             ps.setTimestamp(1, Timestamp.valueOf(dateTime));
@@ -170,6 +225,13 @@ public class ReservationDAO implements DAO<Reservation> {
         }
     }
 
+    /**
+     * Retrieves a list of reservations for a specific film.
+     *
+     * @param filmId the ID of the film
+     * @return a list of reservations for the film
+     * @throws SQLException if a database error occurs
+     */
     public List<Reservation> findByFilmId(int filmId) throws SQLException {
         List<Reservation> reservations = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(FIND_BY_ID_FILM)) {
@@ -190,9 +252,15 @@ public class ReservationDAO implements DAO<Reservation> {
         return reservations;
     }
 
-
+    /**
+     * Cierra la conexión a la base de datos.
+     *
+     * @throws Exception si ocurre algún error al cerrar la conexión
+     */
     @Override
     public void close() throws Exception {
-
+        if (connection != null) {
+            connection.close();
+        }
     }
 }

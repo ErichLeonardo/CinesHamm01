@@ -21,18 +21,30 @@ public class CarDAO implements DAO<Car> {
     public void setConnection(Connection connection) {
     }
 
+    // Consulta SQL para obtener todos los registros de car
     private final static String FIND_ALL = "SELECT * FROM car";
 
+    // Consulta SQL para insertar un nuevo registro en la tabla Car
     private final static String INSERT = "INSERT INTO Car (tuition, brand, model, isRented) VALUES (?, ?, ?, ?)";
 
+    // Consulta SQL para buscar un registro de Car por su id
     private final static String FIND_BY_ID = "SELECT * FROM Car WHERE id_car = ?";
 
+    // Consulta SQL para actualizar un registro de Car
     private final static String UPDATE = "UPDATE Car SET brand = ?, model = ?, isRented = ? WHERE tuition = ?";
 
+    // Consulta SQL para eliminar un registro de Car por su tuition
     private final static String DELETE = "DELETE FROM Car WHERE tuition = ?";
 
+    // Consulta SQL para buscar un registro de Car por su tuition
     private final static String FIND_BY_TUITION = "SELECT * FROM Car WHERE tuition = ?";
 
+    /**
+     * Obtiene todos los registros de Car de la base de datos.
+     *
+     * @return una lista de objetos Car
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public List<Car> findAll() throws SQLException {
         List<Car> cars = new ArrayList<>();
@@ -50,6 +62,13 @@ public class CarDAO implements DAO<Car> {
         return cars;
     }
 
+    /**
+     * Busca un registro de Car por su id.
+     *
+     * @param id el id del registro a buscar
+     * @return un objeto Car si se encuentra, o null si no existe
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public Car findById(int id) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(FIND_BY_ID)) {
@@ -66,6 +85,13 @@ public class CarDAO implements DAO<Car> {
         }
     }
 
+    /**
+     * Inserta un nuevo registro de Car en la base de datos.
+     *
+     * @param entity el objeto Car a insertar
+     * @return el objeto Car insertado
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public Car insert(Car entity) throws SQLException {
         if (entity == null) {
@@ -105,6 +131,12 @@ public class CarDAO implements DAO<Car> {
         return entity;
     }
 
+    /**
+     * Elimina un registro de Car de la base de datos.
+     *
+     * @param entity el objeto Car a eliminar
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public void delete(Car entity) throws SQLException {
         if (entity == null) {
@@ -117,6 +149,13 @@ public class CarDAO implements DAO<Car> {
         }
     }
 
+    /**
+     * Actualiza un registro de Car en la base de datos.
+     *
+     * @param entity el objeto Car a actualizar
+     * @return el objeto Car actualizado
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     @Override
     public Car update(Car entity) throws SQLException {
         if (entity == null) {
@@ -158,7 +197,13 @@ public class CarDAO implements DAO<Car> {
         return entity;
     }
 
-
+    /**
+     * Busca un registro de Car por su tuition.
+     *
+     * @param tuition el tuition del registro a buscar
+     * @return un objeto Car si se encuentra, o null si no existe
+     * @throws SQLException si ocurre algún error en la consulta SQL
+     */
     public Car findByTuition(String tuition) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(FIND_BY_TUITION)) {
             statement.setString(1, tuition);
@@ -173,7 +218,11 @@ public class CarDAO implements DAO<Car> {
         }
     }
 
-
+    /**
+     * Cierra la conexión a la base de datos.
+     *
+     * @throws Exception si ocurre algún error al cerrar la conexión
+     */
     @Override
     public void close() throws Exception {
         if (connection != null) {

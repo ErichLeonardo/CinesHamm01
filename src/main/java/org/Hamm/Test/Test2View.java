@@ -29,6 +29,7 @@ public class Test2View extends Application {
         primaryStage.show();
     }
 
+    // Método para abrir la ventana del menú principal
     public void openMenuWindow(User user, Connection connection) throws IOException {
         this.connection = connection;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/MenuPrincipal.fxml"));
@@ -45,6 +46,7 @@ public class Test2View extends Application {
         menuPrincipalStage.show();
     }
 
+    // Método para abrir la ventana del menú principal administrador
     public void openAdminWindow(User user, Connection connection) throws IOException {
         this.connection = connection;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/Adminview.fxml"));
@@ -61,6 +63,7 @@ public class Test2View extends Application {
         adminStage.show();
     }
 
+    // Método para abrir la ventana de registro
     public void openRegisterWindow() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/Register.fxml"));
@@ -79,6 +82,7 @@ public class Test2View extends Application {
         }
     }
 
+    // Manejador de evento para el botón de películas (usuario normal)
     @FXML
     public void handleMoviesButton() {
         try {
@@ -99,6 +103,7 @@ public class Test2View extends Application {
         }
     }
 
+    // Manejador de evento para el botón de películas (admin)
     @FXML
     public void handleMoviesButtonAdmin() {
         try {
@@ -119,6 +124,7 @@ public class Test2View extends Application {
         }
     }
 
+    //ventana lista user para admin
     public void handleUserButtonAdmin() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/ListUserAdmin.fxml"));
