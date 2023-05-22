@@ -18,14 +18,16 @@ public class TestCAR {
         try (Connection connection = DriverManager.getConnection(url, user, pwd)) {
             CarDAO carDAO = new CarDAO(connection);
 
-            Car car1 = new Car("TYU-123", "Toyota", "Corolla", false);
-            Car car2 = new Car("DEF-456", null, null, true);
+            Car car1 = new Car("0006CIN", "", "", true);
             carDAO.insert(car1);
-            System.out.println("Car " + car1.getTuition() + " inserted successfully");
-
-            // Insert car2
+            /*Car car2 = new Car("0001CIN", null, null, true);
+            Car car5 = new Car("0005CIN", null, null, true);
+            Car car3 = new Car("0003CIN", null, null, true);
+            Car car4 = new Car("0004CIN", null, null, true);
             carDAO.insert(car2);
-            System.out.println("Car " + car2.getTuition() + " inserted successfully");
+            carDAO.insert(car3);
+            carDAO.insert(car4);
+            carDAO.insert(car5);*/
             /*
             Car car = carDAO.findByTuition("ABC-123");
             System.out.println("Before update: " + car);
