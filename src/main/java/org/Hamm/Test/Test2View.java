@@ -46,7 +46,7 @@ public class Test2View extends Application {
         menuPrincipalStage.show();
     }
 
-    // Método para abrir la ventana del menú admin
+    // Método para abrir la ventana del menú administrador
     public void openAdminWindow(User user, Connection connection) throws IOException {
         this.connection = connection;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/Adminview.fxml"));
