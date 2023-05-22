@@ -128,6 +128,7 @@ public class ListBookingsControllerAdmin {
         Film film;
 
         try {
+
             // Obtener instancias de User, Car y Film
             user = userDAO.findById(idUser);
             car = carDAO.findByTuition(tuition);

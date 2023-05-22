@@ -75,6 +75,9 @@ public class LoginController {
         }
     }
 
+    /**
+     * Button to open the registerview
+     */
     @FXML
     private void register() {
         test2View.openRegisterWindow();

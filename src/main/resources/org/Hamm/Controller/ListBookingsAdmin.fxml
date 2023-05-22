@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="362.0" prefWidth="826.0" stylesheets="styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.ListBookingsControllerAdmin">
+<AnchorPane prefHeight="362.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.ListBookingsControllerAdmin">
    <children>
       <TableView fx:id="tableView" layoutX="22.0" layoutY="70.0" prefHeight="259.0" prefWidth="554.0">
           <columns>

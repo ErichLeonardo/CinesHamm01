@@ -29,6 +29,9 @@ public class CarController {
         carDAO = new CarDAO(connection);
     }
 
+    /**
+     * Button for add a new car
+     */
     @FXML
     private void handleAddCar() {
         String url = "jdbc:mysql://localhost:3306/CinesHamm";

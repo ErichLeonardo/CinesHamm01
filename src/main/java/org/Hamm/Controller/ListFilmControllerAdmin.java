@@ -62,6 +62,10 @@ public class ListFilmControllerAdmin {
         }
     }
 
+    /**
+     * Method for delete a film
+     * @throws SQLException
+     */
     @FXML
     public void handleDeleteButton() throws SQLException {
         Film selectedFilm = tableView.getSelectionModel().getSelectedItem();
@@ -75,6 +79,10 @@ public class ListFilmControllerAdmin {
         System.out.println("Película eliminada: " + selectedFilm);
     }
 
+    /**
+     * Method for add a film
+     * @throws SQLException
+     */
     @FXML
     public void handleAddButton() throws SQLException {
         int ID = Integer.parseInt(idTextField.getText());
@@ -91,6 +99,10 @@ public class ListFilmControllerAdmin {
         tableView.getItems().add(newFilm);
     }
 
+    /**
+     * Method for update a film
+     * @throws SQLException
+     */
     @FXML
     public void handleUpdateButton() throws SQLException {
         Film selectedFilm = tableView.getSelectionModel().getSelectedItem();
@@ -114,6 +126,9 @@ public class ListFilmControllerAdmin {
     }
 
 
+    /**
+     * Method for clean the imput fields
+     */
     private void clearInputFields() {
         idTextField.clear();
         titleTextField.clear();

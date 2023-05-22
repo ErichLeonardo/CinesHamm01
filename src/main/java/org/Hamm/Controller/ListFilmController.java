@@ -41,6 +41,9 @@ public class ListFilmController {
     private FilmDAO filmDAO;
 
 
+    /**
+     * Method for view better the synopsis
+     */
     @FXML
     public void showSynopsisDialog() {
         Film selectedFilm = tableView.getSelectionModel().getSelectedItem();
@@ -62,6 +65,9 @@ public class ListFilmController {
         }
     }
 
+    /**
+     * See the film list
+     */
     public void execute() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id_film"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));

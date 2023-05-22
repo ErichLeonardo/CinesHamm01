@@ -69,6 +69,9 @@ public class ListBookingsController {
     @FXML
     private ComboBox<String> locationComboBox;
 
+    /**
+     * List of reservations
+     */
     public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id_reservation"));
         userColumn.setCellValueFactory(data -> {
@@ -102,6 +105,9 @@ public class ListBookingsController {
         }
     }
 
+    /**
+     * Add a new reservation
+     */
     @FXML
     public void handleAddButton() {
         int idUser;
@@ -150,6 +156,9 @@ public class ListBookingsController {
     }
 
 
+    /**
+     * Button for see the film list
+     */
     @FXML
     public void handleMoviesButton() {
         try {
