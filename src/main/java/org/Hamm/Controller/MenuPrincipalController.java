@@ -22,6 +22,10 @@ public class MenuPrincipalController {
         userIdLabel.setText("ID user: " + userId);
     }
 
+    /**
+     * U can see your id of user.
+     * @param id_user
+     */
     public void setUserId(int id_user) {
         this.userId = id_user;
         initialize(); // Actualizar la etiqueta con el nuevo valor de userId
@@ -31,11 +35,17 @@ public class MenuPrincipalController {
         this.connection = connection;
     }
 
+    /**
+     * View the filmview where u can see all the films
+     */
     @FXML
     private void handleMoviesButton() {
         Test2View.getInstance().handleMoviesButton();
     }
 
+    /**
+     * See the booking of a user, and add a new reservation
+     */
     @FXML
     public void handleBookingsButton() {
         try {
@@ -55,6 +65,9 @@ public class MenuPrincipalController {
         }
     }
 
+    /**
+     * View the carview where u can add a car.
+     */
     @FXML
     public void handleCarButton() {
         try {

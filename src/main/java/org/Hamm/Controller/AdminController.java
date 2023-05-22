@@ -35,16 +35,25 @@ public class AdminController {
         initialize(); // Actualizar la etiqueta con el nuevo valor de userId
     }
 
+    /**
+     * View the filmview for admin, u can add, update and delete films
+     */
     @FXML
     private void handleMoviesButtonAdmin() {
         Test2View.getInstance().handleMoviesButtonAdmin();
     }
 
+    /**
+     * view the userview for admin, u can add, update and delete users
+     */
     @FXML
     private void handleUserButtonAdmin() {
         Test2View.getInstance().handleUserButtonAdmin();
     }
 
+    /**
+     * view the reservation view where u can delete a reservation or add one new reservation
+     */
     @FXML
     public void handleBookingsButton() {
         try {

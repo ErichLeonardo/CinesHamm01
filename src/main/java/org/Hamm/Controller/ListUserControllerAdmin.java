@@ -54,6 +54,9 @@ public class ListUserControllerAdmin {
 
     private UserDAO userDAO;
 
+    /**
+     * List of my users data base
+     */
     public void execute() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id_user"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -72,6 +75,10 @@ public class ListUserControllerAdmin {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Method to delete a user
+     */
     @FXML
     public void handleDeleteButton() {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
@@ -90,6 +97,10 @@ public class ListUserControllerAdmin {
         System.out.println("Usuario eliminado: " + selectedUser);
     }
 
+    /**
+     * Method to update a user
+     * @throws SQLException
+     */
     @FXML
     public void handleUpdateButton() throws SQLException {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
@@ -130,6 +141,11 @@ public class ListUserControllerAdmin {
         phoneTextField.clear();
         isAdminCheckBox.setSelected(false);
     }
+
+    /**
+     * Method to make admin a user
+     */
+
     @FXML
     public void handleMakeAdminButton() throws SQLException {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
@@ -144,6 +160,10 @@ public class ListUserControllerAdmin {
         tableView.refresh();
     }
 
+    /**
+     * Method to add a user
+     * @throws SQLException
+     */
     @FXML
     public void handleAddButton() throws SQLException {
         String email = emailTextField.getText();

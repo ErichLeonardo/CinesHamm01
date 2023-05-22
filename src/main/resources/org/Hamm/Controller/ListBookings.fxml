@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="362.0" prefWidth="826.0" stylesheets="styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.ListBookingsController">
+<AnchorPane prefHeight="362.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.ListBookingsController">
     <children>
         <TableView fx:id="tableView" layoutX="22.0" layoutY="70.0" prefHeight="259.0" prefWidth="554.0">
             <columns>
