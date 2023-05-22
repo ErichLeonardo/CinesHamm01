@@ -23,7 +23,7 @@
            <TableColumn fx:id="synopsisColumn" maxWidth="265.0" prefWidth="259.9998779296875" text="synopsis" />
         </columns>
       </TableView>
-      <Button layoutX="673.0" layoutY="36.0" mnemonicParsing="false" onAction="#showSynopsisDialog" text="Ver">
+      <Button layoutX="664.0" layoutY="34.0" mnemonicParsing="false" onAction="#showSynopsisDialog" text="View more">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>
