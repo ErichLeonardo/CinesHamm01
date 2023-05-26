@@ -97,7 +97,7 @@
                 </FXCollections>
             </items>
         </ComboBox>
-        <Button layoutX="764.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add">
+        <Button layoutX="764.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleAddBookingButton" text="Add">
             <font>
                 <Font name="Britannic Bold" size="16.0" />
             </font>

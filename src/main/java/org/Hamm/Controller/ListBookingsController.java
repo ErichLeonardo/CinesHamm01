@@ -72,7 +72,7 @@ public class ListBookingsController {
     /**
      * List of reservations
      */
-    public void initialize() {
+    public void execute() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id_reservation"));
         userColumn.setCellValueFactory(data -> {
             Reservation reservation = data.getValue();
@@ -109,7 +109,7 @@ public class ListBookingsController {
      * Add a new reservation
      */
     @FXML
-    public void handleAddButton() {
+    public void handleAddBookingButton() {
         int idUser;
         String tuition;
         int idFilm;
