@@ -66,6 +66,7 @@ public class AdminController {
 
             ListBookingsControllerAdmin bookingsController = fxmlLoader.getController();
             bookingsController.setConnection(connection); // Pasar la conexión al controlador de la lista de reservas
+            bookingsController.execute();
 
             bookingsStage.show();
         } catch (IOException e) {

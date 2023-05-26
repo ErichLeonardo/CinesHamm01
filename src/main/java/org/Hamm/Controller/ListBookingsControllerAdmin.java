@@ -69,7 +69,7 @@ public class ListBookingsControllerAdmin {
     @FXML
     private ComboBox<String> locationComboBox;
 
-    public void initialize() {
+    public void execute() {
             idColumn.setCellValueFactory(new PropertyValueFactory<>("id_reservation"));
             userColumn.setCellValueFactory(data -> {
                 Reservation reservation = data.getValue();

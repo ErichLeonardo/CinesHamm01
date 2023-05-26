@@ -21,8 +21,8 @@ public class TestUSER {
             UserDAO userDAO = new UserDAO(connection);
 
             User userToInsert = new User();
-            userToInsert.setEmail("admin");
-            userToInsert.setPassword("1234");
+            userToInsert.setEmail("jaguar@gmail.com");
+            userToInsert.setPassword(PasswordUtils.hashPassword("1234"));
             userToInsert.setName("Vicky");
             userToInsert.setSurname("Sell");
             userToInsert.setPhone("606935963");
@@ -33,14 +33,14 @@ public class TestUSER {
             System.out.println(insertedUser);
 
             User adminUser = userDAO.makeAdmin(insertedUser);
-/*
+
 
             User foundUser = userDAO.findById(11);
 
             System.out.println("User found:");
             System.out.println(foundUser);
 
-            //userDAO.delete(insertedUser);
+            userDAO.delete(insertedUser);
 
             List<User> userList = userDAO.findAll();
             for (User user1 : userList) {
@@ -50,15 +50,15 @@ public class TestUSER {
                 System.out.println("Name: " + user1.getName());
                 System.out.println("Surname: " + user1.getSurname());
                 System.out.println("Phone: " + user1.getPhone());
-                System.out.println("Is admin: " + user1.is_admin());
+                System.out.println("Is admin: " + user1.isIs_admin());
                 System.out.println();
             }
             User userToUpdate = userDAO.findById(12);
             if (userToUpdate != null) {
-                userToUpdate.setEmail("rafael34@test.com");
-                userToUpdate.setHashedPassword(PasswordUtils.hashPassword("trp56"));
-                userToUpdate.setName("Rafa");
-                userToUpdate.setSurname("Perez");
+                userToUpdate.setEmail("jaguar0234@test.com");
+                userToUpdate.setPassword(PasswordUtils.hashPassword("trp56"));
+                userToUpdate.setName("Viqui");
+                userToUpdate.setSurname("Cell");
                 userToUpdate.setPhone("987654321");
                 User updatedUser = userDAO.update(userToUpdate);
                 System.out.println("User updated:");
@@ -68,10 +68,10 @@ public class TestUSER {
            // User adminUser = userDAO.makeAdmin(insertedUser);
 
             // Mostrar el usuario después de hacerlo administrador
-           // System.out.println("User after making admin:");
-            //System.out.println(adminUser);
+            System.out.println("User after making admin:");
+            System.out.println(adminUser);
 
-        */
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
