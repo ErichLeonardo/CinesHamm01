@@ -3,12 +3,15 @@ package org.Hamm.Model.DAO;
 import org.Hamm.Model.Domain.Car;
 import org.Hamm.Utils.Validator;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.Hamm.Logger.LoggerSingleton;
+
 
 public class CarDAO implements DAO<Car> {
 
@@ -17,6 +20,7 @@ public class CarDAO implements DAO<Car> {
     public CarDAO(Connection connection) {
         this.connection = connection;
     }
+
 
     public void setConnection(Connection connection) {
     }
@@ -81,7 +85,11 @@ public class CarDAO implements DAO<Car> {
                 boolean isRented = result.getBoolean("isRented");
                 return new Car(tuition, brand, model, isRented);
             }
+            LoggerSingleton logger = LoggerSingleton.getInstance();
+            logger.logger("No se encontró ningún registro de Car con ID: " + id);
             return null;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
