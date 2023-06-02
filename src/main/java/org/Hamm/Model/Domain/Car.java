@@ -14,7 +14,15 @@ public class Car {
     List<Reservation> reservations;
     List<User> users;
 
-    public Car(String tuition, String brand, String model, boolean rented) {
+    public Car(int id_car, String tuition, String brand, String model, boolean rented) {
+        this.id_car=id_car;
+        this.tuition = tuition;
+        this.brand = brand;
+        this.model = model;
+        this.rented = rented;
+    }
+
+    public Car(String tuition, String brand, String model, boolean isRented) {
         this.tuition = tuition;
         this.brand = brand;
         this.model = model;

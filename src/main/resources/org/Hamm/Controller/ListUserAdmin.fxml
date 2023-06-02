@@ -67,6 +67,11 @@
             <Font name="Britannic Bold" size="16.0" />
          </font>
       </Button>
+      <TextField layoutX="106.0" layoutY="21.0" />
+      <Button fx:id="btnSearch" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="🔍 Search ">
+         <font>
+            <Font name="Britannic Bold" size="12.0" />
+         </font></Button>
 
     </children>
 

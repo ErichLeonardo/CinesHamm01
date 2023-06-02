@@ -27,9 +27,9 @@ public class ConnectionMySQL {
     }
 
     public static Connection getConnect() {
-        if(_newInstance==null){
+       // if(_newInstance==null){
             _newInstance=new ConnectionMySQL();
-        }
+       // }
         return con;
     }
 

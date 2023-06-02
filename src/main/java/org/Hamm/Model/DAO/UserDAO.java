@@ -261,9 +261,9 @@ public class UserDAO implements DAO<User> {
 
     @Override
     public void close() throws Exception {
-        if (connection != null) {
-            connection.close();
-        }
+//        if (connection != null) {
+//            connection.close();
+//        }
     }
 
 }
