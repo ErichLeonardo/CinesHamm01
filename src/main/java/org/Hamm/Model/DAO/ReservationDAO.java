@@ -38,7 +38,7 @@ public class ReservationDAO implements DAO<Reservation> {
     private static final String FIND_BY_ID_FILM = "SELECT * FROM Reservation JOIN Film on Reservation.id_film=Film.id.film WHERE ID_FILM=?";
 
     // Consulta para insertar una nueva reserva en la tabla "Reservation" con los valores proporcionados
-    private final static String INSERT_RESERVATION = "INSERT INTO Reservation(id_user, tuition_car, id_film, day, hour, location) VALUES(?,?,?,?,?,?)";
+    private final static String INSERT_RESERVATION = "INSERT INTO Reservation(id_user, id_car, id_film, day, hour, location) VALUES(?,?,?,?,?,?)";
 
     // Consulta para verificar si existen reservas duplicadas para un usuario, día y hora especificados
     private final static String FIND_DUPLICATE_RESERVATIONS = "SELECT * FROM Reservation WHERE id_user=? AND day=? AND hour=?";
@@ -144,14 +144,19 @@ public class ReservationDAO implements DAO<Reservation> {
                 }
             }
         }
-        try (PreparedStatement psInsert = connection.prepareStatement(INSERT_RESERVATION)) {
+        try (PreparedStatement psInsert = connection.prepareStatement(INSERT_RESERVATION,Statement.RETURN_GENERATED_KEYS)) {
+
             psInsert.setInt(1, entity.getUser().getId_user());
-            psInsert.setString(2, entity.getCar().getTuition());
+            psInsert.setInt(2, entity.getCar().getId_car());
             psInsert.setInt(3, entity.getFilm().getId_film());
             psInsert.setDate(4, Date.valueOf(entity.getDate()));
             psInsert.setTime(5, Time.valueOf(entity.getTime()));
             psInsert.setString(6, entity.getLocation());
             psInsert.executeUpdate();
+            ResultSet rs = psInsert.getGeneratedKeys();
+            if (rs.next()){
+                entity.setId_reservation(rs.getInt(1));
+            }
         }
 
         return entity;
@@ -259,8 +264,8 @@ public class ReservationDAO implements DAO<Reservation> {
      */
     @Override
     public void close() throws Exception {
-        if (connection != null) {
-            connection.close();
-        }
+      //  if (connection != null) {
+       //     connection.close();
+       // }
     }
 }

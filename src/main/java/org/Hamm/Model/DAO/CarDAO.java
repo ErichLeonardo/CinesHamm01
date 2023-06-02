@@ -1,5 +1,6 @@
 package org.Hamm.Model.DAO;
 
+import org.Hamm.Model.Connections.ConnectionMySQL;
 import org.Hamm.Model.Domain.Car;
 import org.Hamm.Utils.Validator;
 
@@ -20,7 +21,6 @@ public class CarDAO implements DAO<Car> {
     public CarDAO(Connection connection) {
         this.connection = connection;
     }
-
 
     public void setConnection(Connection connection) {
     }
@@ -55,11 +55,12 @@ public class CarDAO implements DAO<Car> {
         try (PreparedStatement statement = connection.prepareStatement(FIND_ALL)) {
             ResultSet result = statement.executeQuery();
             while (result.next()) {
+                int id_car = result.getInt("id_car");
                 String tuition = result.getString("tuition");
                 String brand = result.getString("brand");
                 String model = result.getString("model");
                 boolean isRented = result.getBoolean("isRented");
-                Car car = new Car(tuition, brand, model, isRented);
+                Car car = new Car(id_car, tuition, brand, model, isRented);
                 cars.add(car);
             }
         }
@@ -79,11 +80,12 @@ public class CarDAO implements DAO<Car> {
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
+                int id_car = result.getInt("id_car");
                 String tuition = result.getString("tuition");
                 String brand = result.getString("brand");
                 String model = result.getString("model");
                 boolean isRented = result.getBoolean("isRented");
-                return new Car(tuition, brand, model, isRented);
+                return new Car(id_car, tuition, brand, model, isRented);
             }
             LoggerSingleton logger = LoggerSingleton.getInstance();
             logger.logger("No se encontró ningún registro de Car con ID: " + id);
@@ -217,10 +219,11 @@ public class CarDAO implements DAO<Car> {
             statement.setString(1, tuition);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
+                int id_car = result.getInt("id_car");
                 String brand = result.getString("brand");
                 String model = result.getString("model");
                 boolean isRented = result.getBoolean("isRented");
-                return new Car(tuition, brand, model, isRented);
+                return new Car(id_car,tuition, brand, model, isRented);
             }
             return null;
         }
@@ -233,9 +236,9 @@ public class CarDAO implements DAO<Car> {
      */
     @Override
     public void close() throws Exception {
-        if (connection != null) {
-            connection.close();
-        }
+       // if (connection != null) {
+       //     connection.close();
+       // }
     }
 
 

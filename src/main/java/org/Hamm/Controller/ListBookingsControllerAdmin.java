@@ -111,25 +111,24 @@ public class ListBookingsControllerAdmin {
         String time;
         String location;
 
-        try {
-            idUser = Integer.parseInt(idUserField.getText());
-            tuition = tuitionCarField.getText();
-            idFilm = Integer.parseInt(idFilmField.getText());
-            date = datePicker.getValue();
-            time = timeComboBox.getValue();
-            location = locationComboBox.getValue();
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            return;
-        }
+        idUser = Integer.parseInt(idUserField.getText());
+        tuition = tuitionCarField.getText();
+        idFilm = Integer.parseInt(idFilmField.getText());
+        date = datePicker.getValue();
+        time = timeComboBox.getValue();
+        location = locationComboBox.getValue();
 
         User user;
         Car car;
         Film film;
 
         try {
-
             // Obtener instancias de User, Car y Film
+            Connection connection = ConnectionMySQL.getConnect();
+            this.userDAO = new UserDAO(connection);
+            this.carDAO = new CarDAO(connection);
+            this.filmDAO = new FilmDAO(connection);
+            this.reservationDAO = new ReservationDAO(connection);
             user = userDAO.findById(idUser);
             car = carDAO.findByTuition(tuition);
             film = filmDAO.findById(idFilm);
@@ -150,6 +149,12 @@ public class ListBookingsControllerAdmin {
             ReservationDAO reservationDAO = new ReservationDAO(connection);
             reservationDAO.insert(reservation);
             tableView.getItems().add(reservation);
+
+            idUserField.clear();
+            tuitionCarField.clear();
+            idFilmField.clear();
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
