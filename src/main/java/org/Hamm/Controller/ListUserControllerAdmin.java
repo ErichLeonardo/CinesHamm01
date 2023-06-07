@@ -1,16 +1,21 @@
 package org.Hamm.Controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseButton;
+import javafx.stage.Stage;
 import org.Hamm.Model.DAO.UserDAO;
 import org.Hamm.Model.Domain.User;
 import org.Hamm.Utils.PasswordUtils;
 
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -50,7 +55,10 @@ public class ListUserControllerAdmin {
     @FXML
     private TextField phoneTextField;
     @FXML
+    private TextField searchField;
+    @FXML
     private CheckBox isAdminCheckBox;
+
 
     private UserDAO userDAO;
 
@@ -74,6 +82,25 @@ public class ListUserControllerAdmin {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        // Configurar evento de escucha para búsqueda en tiempo real
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                List<User> users = userDAO.search(newValue);
+                tableView.getItems().clear(); // Limpiar los elementos existentes en la tabla
+                tableView.getItems().addAll(users); // Agregar los usuarios encontrados a la tabla
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+
+        tableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                handleUserDoubleClick();
+            }
+        });
+
+
     }
 
     /**
@@ -187,6 +214,49 @@ public class ListUserControllerAdmin {
         clearInputFields();
         tableView.getItems().add(newUser);
     }
+
+    @FXML
+    public void handleSearchButton() {
+        String searchText = searchField.getText(); // Obtener el texto de búsqueda desde un campo de texto
+
+        // Realizar la búsqueda en la base de datos utilizando el UserDAO
+        try {
+            List<User> users = userDAO.search(searchText);
+            tableView.getItems().clear(); // Limpiar los elementos existentes en la tabla
+            tableView.getItems().addAll(users); // Agregar los usuarios encontrados a la tabla
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleUserDoubleClick() {
+        User selectedUser = tableView.getSelectionModel().getSelectedItem();
+        if (selectedUser != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/ListBookingsAdmin.fxml"));
+                Parent root = loader.load();
+
+                ListBookingsControllerAdmin bookingsController = loader.getController();
+                bookingsController.setConnection(connection);
+                bookingsController.setUserId(selectedUser.getId_user());
+                bookingsController.execute(); // Cargar los datos en la vista
+
+                // Cerrar la ventana actual (opcional)
+                Stage stage = (Stage) tableView.getScene().getWindow();
+                stage.close();
+
+                // Mostrar la nueva ventana
+                Stage bookingsStage = new Stage();
+                bookingsStage.setTitle("Bookings List");
+                bookingsStage.setScene(new Scene(root, 880, 380));
+                bookingsStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 
 
 

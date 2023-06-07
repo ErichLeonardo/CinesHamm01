@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="362.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.ListBookingsControllerAdmin">
+<AnchorPane prefHeight="362.0" prefWidth="877.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.ListBookingsControllerAdmin">
    <children>
       <TableView fx:id="tableView" layoutX="22.0" layoutY="70.0" prefHeight="259.0" prefWidth="554.0">
           <columns>
@@ -102,7 +102,7 @@
                </FXCollections>
            </items>
        </ComboBox>
-      <Button layoutX="688.0" layoutY="304.0" mnemonicParsing="false" text="Add" onAction="#handleAddButton">
+      <Button layoutX="688.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>
@@ -140,5 +140,10 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Button fx:id="userview" layoutX="818.0" layoutY="81.0" onAction="#handleUserView" mnemonicParsing="false" prefHeight="26.0" prefWidth="46.0" text="users">
+         <font>
+            <Font name="Britannic Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

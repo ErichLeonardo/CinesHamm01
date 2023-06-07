@@ -17,6 +17,7 @@ import org.Hamm.Model.Domain.Car;
 import org.Hamm.Model.Domain.Film;
 import org.Hamm.Model.Domain.Reservation;
 import org.Hamm.Model.Domain.User;
+import org.Hamm.Test.Test2View;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -68,6 +69,10 @@ public class ListBookingsControllerAdmin {
     private ComboBox<String> timeComboBox;
     @FXML
     private ComboBox<String> locationComboBox;
+
+    public void setUserId(int userId) {
+        idUserField.setText(String.valueOf(userId));
+    }
 
     public void execute() {
             idColumn.setCellValueFactory(new PropertyValueFactory<>("id_reservation"));
@@ -192,6 +197,14 @@ public class ListBookingsControllerAdmin {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    @FXML
+    private void handleUserView() {
+        Test2View.getInstance().handleUserButtonAdmin();
+        Stage stage = (Stage) tableView.getScene().getWindow();
+        stage.close();
     }
 
 

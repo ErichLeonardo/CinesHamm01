@@ -248,6 +248,41 @@ public class UserDAO implements DAO<User> {
         return entity;
     }
 
+    public List<User> search(String searchText) throws SQLException {
+        List<User> userList = new ArrayList<>();
+        String SEARCH_QUERY = "SELECT id_user, email, name, surname, phone, isAdmin FROM User " +
+                "WHERE id_user = ? OR email LIKE ? OR name LIKE ? OR surname LIKE ? OR phone LIKE ?";
+        try (PreparedStatement ps = connection.prepareStatement(SEARCH_QUERY)) {
+            int searchId;
+            try {
+                searchId = Integer.parseInt(searchText);
+            } catch (NumberFormatException e) {
+                searchId = -1; // Valor inválido para el ID
+            }
+            ps.setInt(1, searchId);
+            String searchPattern = "%" + searchText + "%";
+            ps.setString(2, searchPattern);
+            ps.setString(3, searchPattern);
+            ps.setString(4, searchPattern);
+            ps.setString(5, searchPattern);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    User user = new User();
+                    user.setId_user(rs.getInt("id_user"));
+                    user.setEmail(rs.getString("email"));
+                    user.setName(rs.getString("name"));
+                    user.setSurname(rs.getString("surname"));
+                    user.setPhone(rs.getString("phone"));
+                    user.setIs_admin(rs.getBoolean("isAdmin"));
+                    userList.add(user);
+                }
+            }
+        }
+        return userList;
+    }
+
+
+
     /**
      * Verifica si una contraseña sin cifrar coincide con una contraseña cifrada.
      *
