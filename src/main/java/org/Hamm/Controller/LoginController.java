@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.Hamm.Model.DAO.UserDAO;
 import org.Hamm.Model.Domain.User;
 import org.Hamm.Test.Test2View;
@@ -61,13 +62,19 @@ public class LoginController {
                 // Abrir la siguiente ventana
                 if (authenticatedUser.isIs_admin()) {
                     test2View.openAdminWindow(authenticatedUser, connection); // Abrir ventana de administrador
+
                 } else {
                     test2View.openMenuWindow(authenticatedUser, connection); // Abrir ventana de usuario normal
+
                 }
             } else {
                 // Credenciales inválidas, mostrar mensaje de error
                 errorLabel.setText("Credenciales inválidas");
             }
+
+            Stage currentStage = (Stage) emailField.getScene().getWindow();
+            currentStage.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -80,6 +87,9 @@ public class LoginController {
      */
     @FXML
     private void register() {
+        Stage currentStage = (Stage) emailField.getScene().getWindow();
+        currentStage.close();
+
         test2View.openRegisterWindow();
     }
 }

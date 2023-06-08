@@ -27,7 +27,7 @@
          </font>
       </Button>
 
-      <Button layoutX="318.0" layoutY="240.0" mnemonicParsing="false" prefHeight="118.0" prefWidth="198.0" text="SIGN OFF">
+      <Button layoutX="318.0" layoutY="240.0" mnemonicParsing="false" prefHeight="118.0" prefWidth="198.0" onAction="#handleSignOffButton" text="SIGN OFF">
          <font>
             <Font name="Britannic Bold" size="23.0" />
          </font>
