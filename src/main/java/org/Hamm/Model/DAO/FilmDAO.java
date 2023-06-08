@@ -176,6 +176,37 @@ public class FilmDAO implements DAO<Film> {
             return null;
         }
     }
+    public List<Film> search(String searchText) throws SQLException {
+        List<Film> filmList = new ArrayList<>();
+        String SEARCH_QUERY = "SELECT * FROM Film WHERE id_film = ? OR title LIKE ? OR genre LIKE ?";
+        try (PreparedStatement ps = connection.prepareStatement(SEARCH_QUERY)) {
+            int searchId;
+            try {
+                searchId = Integer.parseInt(searchText);
+            } catch (NumberFormatException e) {
+                searchId = -1; // Valor inválido para el ID
+            }
+            ps.setInt(1, searchId);
+            String searchPattern = "%" + searchText + "%";
+            ps.setString(2, searchPattern);
+            ps.setString(3, searchPattern); // Establecer el valor para el tercer parámetro
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Film film = new Film(
+                            rs.getInt("id_film"),
+                            rs.getString("title"),
+                            rs.getString("genre"),
+                            rs.getTime("duration"),
+                            rs.getString("synopsis")
+                    );
+                    filmList.add(film);
+                }
+            }
+        }
+        return filmList;
+    }
+
+
 
     /**
      * Cierra la conexión a la base de datos.

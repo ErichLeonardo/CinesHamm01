@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -23,10 +24,19 @@
            <TableColumn fx:id="synopsisColumn" maxWidth="265.0" prefWidth="259.9998779296875" text="synopsis" />
         </columns>
       </TableView>
-      <Button layoutX="664.0" layoutY="34.0" mnemonicParsing="false" onAction="#showSynopsisDialog" text="View more">
+
+      <TextField fx:id="searchField" layoutX="108.0" layoutY="22.0" />
+      <Button fx:id="btnSearch" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleSearchButton" prefHeight="26.0" prefWidth="82.0" text="🔍 Search ">
+         <font>
+            <Font name="Britannic Bold" size="12.0" />
+         </font>
+      </Button>
+
+      <Button layoutX="617.0" layoutY="20.0" mnemonicParsing="false" onAction="#showSynopsisDialog" text="View more">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>
       </Button>
+
    </children>
 </AnchorPane>

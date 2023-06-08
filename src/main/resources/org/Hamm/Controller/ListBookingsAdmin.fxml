@@ -55,7 +55,7 @@
           </columns>
 
       </TableView>
-      <Button layoutX="746.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete">
+      <Button layoutX="798.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>
@@ -102,7 +102,7 @@
                </FXCollections>
            </items>
        </ComboBox>
-      <Button layoutX="688.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add">
+      <Button layoutX="737.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>
@@ -125,9 +125,9 @@
        <TextField fx:id="idUserField" layoutX="662.0" layoutY="81.0" />
        <TextField fx:id="tuitionCarField" layoutX="662.0" layoutY="119.0" />
        <TextField fx:id="idFilmField" layoutX="662.0" layoutY="154.0" />
-      <Button layoutX="617.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleMoviesButton" text="FILMS">
+      <Button layoutX="818.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleMoviesButton" prefHeight="26.0" prefWidth="46.0" text="films">
          <font>
-            <Font name="Britannic Bold" size="16.0" />
+            <Font name="Britannic Bold" size="12.0" />
          </font>
       </Button>
       <Label layoutX="595.0" layoutY="198.0" text="DATE">
@@ -140,7 +140,12 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="userview" layoutX="818.0" layoutY="81.0" onAction="#handleUserView" mnemonicParsing="false" prefHeight="26.0" prefWidth="46.0" text="users">
+      <Button fx:id="userview" layoutX="818.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleUserView" prefHeight="26.0" prefWidth="46.0" text="users">
+         <font>
+            <Font name="Britannic Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="818.0" layoutY="119.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="46.0" text="cars">
          <font>
             <Font name="Britannic Bold" size="12.0" />
          </font>

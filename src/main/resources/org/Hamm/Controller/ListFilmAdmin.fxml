@@ -55,12 +55,17 @@
         <TextField fx:id="genreTextField" layoutX="770.0" layoutY="198.0" prefWidth="180.0" />
         <TextField fx:id="durationTextField" layoutX="770.0" layoutY="246.0" prefWidth="180.0" />
         <TextField fx:id="synopsisTextField" layoutX="770.0" layoutY="290.0" prefWidth="180.0" />
-      <Button fx:id="btnSearch" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="🔍 Search ">
+        <TextField fx:id="searchField" layoutX="106.0" layoutY="21.0" />
+        <Button fx:id="btnSearch" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleSearchButton" prefHeight="26.0" prefWidth="82.0" text="🔍 Search ">
+            <font>
+                <Font name="Britannic Bold" size="12.0" />
+            </font>
+        </Button>
+      <Button layoutX="799.0" layoutY="19.0" mnemonicParsing="false" onAction="#showSynopsisDialog" prefHeight="30.0" prefWidth="122.0" text="ViewSynopsis">
          <font>
-            <Font name="Britannic Bold" size="12.0" />
+            <Font name="Britannic Bold" size="16.0" />
          </font>
       </Button>
-      <TextField layoutX="107.0" layoutY="21.0" />
     </children>
 
 </AnchorPane>

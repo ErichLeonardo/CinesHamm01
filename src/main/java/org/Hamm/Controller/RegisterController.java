@@ -92,5 +92,20 @@ public class RegisterController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void BacktoLogin() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/Login.fxml"));
+            Parent loginRoot = fxmlLoader.load();
+            Scene scene = new Scene(loginRoot, 600, 400);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
 

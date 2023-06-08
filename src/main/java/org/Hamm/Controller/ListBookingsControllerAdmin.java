@@ -74,6 +74,10 @@ public class ListBookingsControllerAdmin {
         idUserField.setText(String.valueOf(userId));
     }
 
+    public void setFilmId(int filmId){
+        idFilmField.setText(String.valueOf(filmId));
+    }
+
     public void execute() {
             idColumn.setCellValueFactory(new PropertyValueFactory<>("id_reservation"));
             userColumn.setCellValueFactory(data -> {
@@ -181,22 +185,9 @@ public class ListBookingsControllerAdmin {
 
     @FXML
     public void handleMoviesButton() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/ListFilm.fxml"));
-            Parent filmListRoot = fxmlLoader.load();
-
-            Stage filmListStage = new Stage();
-            filmListStage.setTitle("Lista de películas");
-            filmListStage.setScene(new Scene(filmListRoot, 765, 380));
-
-            filmListStage.show();
-
-            ListFilmController filmListController = fxmlLoader.getController();
-            filmListController.setConnection(connection); // Pasar la conexión al controlador de la lista de películas
-            filmListController.execute(); // Ejecutar el método para cargar los datos en la tabla
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Test2View.getInstance().handleMoviesButtonAdmin();
+        Stage stage = (Stage) tableView.getScene().getWindow();
+        stage.close();
     }
 
 
