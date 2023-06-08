@@ -87,5 +87,26 @@ public class MenuPrincipalController {
         }
     }
 
+    /**
+     *Back to login view
+     */
+    @FXML
+    public void handleSignOffButton() {
+        try {
+            Stage currentStage = (Stage) userIdLabel.getScene().getWindow();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/Login.fxml"));
+            Parent loginRoot = fxmlLoader.load();
+
+            Scene loginScene = new Scene(loginRoot, 600, 400);
+
+            currentStage.setScene(loginScene);
+
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
