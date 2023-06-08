@@ -11,7 +11,7 @@ import org.Hamm.Model.Domain.User;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
+
 
 public class Test2View extends Application {
 
