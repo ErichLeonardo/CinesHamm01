@@ -22,7 +22,6 @@ import java.util.List;
 
 public class ListUserControllerAdmin {
     private Connection connection;
-    private String password;
 
     public void setConnection(Connection connection) {
         this.connection = connection;
