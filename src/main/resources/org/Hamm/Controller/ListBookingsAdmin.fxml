@@ -145,7 +145,7 @@
             <Font name="Britannic Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="818.0" layoutY="119.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="46.0" text="cars">
+      <Button layoutX="818.0" layoutY="119.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="46.0" onAction="#handleCarView"  text="cars">
          <font>
             <Font name="Britannic Bold" size="12.0" />
          </font>

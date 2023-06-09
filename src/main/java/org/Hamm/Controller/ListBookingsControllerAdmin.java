@@ -78,6 +78,10 @@ public class ListBookingsControllerAdmin {
         idFilmField.setText(String.valueOf(filmId));
     }
 
+    public void setCarTuiton(String carTuiton){
+        tuitionCarField.setText(String.valueOf(carTuiton));
+    }
+
     public void execute() {
             idColumn.setCellValueFactory(new PropertyValueFactory<>("id_reservation"));
             userColumn.setCellValueFactory(data -> {
@@ -197,6 +201,28 @@ public class ListBookingsControllerAdmin {
         Stage stage = (Stage) tableView.getScene().getWindow();
         stage.close();
     }
+
+    @FXML
+    private void handleCarView() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/ListCar.fxml"));
+            Parent carListRoot = fxmlLoader.load();
+
+            Stage carListStage = new Stage();
+            carListStage.setTitle("Car List");
+            carListStage.setScene(new Scene(carListRoot, 970, 403));
+
+            ListCarControllerAdmin carListController = fxmlLoader.getController();
+
+            carListController.setConnection(connection);
+            carListStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = (Stage) tableView.getScene().getWindow();
+        stage.close();
+    }
+
 
 
 }

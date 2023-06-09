@@ -41,17 +41,17 @@ public class CarController {
         try (Connection connection = DriverManager.getConnection(url, user, pwd)) {
             CarDAO carDAO = new CarDAO(connection);
 
-        String tuition = tuitionField.getText();
-        String brand = brandField.getText();
-        String model = modelField.getText();
-        boolean isRented = false;
+            String tuition = tuitionField.getText();
+            String brand = brandField.getText();
+            String model = modelField.getText();
+            boolean isRented = false;
 
-        Car newCar = new Car(tuition, brand, model, isRented);
-        carDAO.insert(newCar);
+            Car newCar = new Car(tuition, brand, model, isRented);
+            carDAO.insert(newCar);
 
-        tuitionField.clear();
-        brandField.clear();
-        modelField.clear();
+            tuitionField.clear();
+            brandField.clear();
+            modelField.clear();
 
         } catch (SQLException e) {
             e.printStackTrace();

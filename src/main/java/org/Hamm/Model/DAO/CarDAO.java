@@ -22,6 +22,10 @@ public class CarDAO implements DAO<Car> {
         this.connection = connection;
     }
 
+    public CarDAO() {
+
+    }
+
     public void setConnection(Connection connection) {
     }
 
@@ -228,6 +232,38 @@ public class CarDAO implements DAO<Car> {
             return null;
         }
     }
+
+    public List<Car> search(String searchText) throws SQLException {
+        List<Car> carList = new ArrayList<>();
+        String SEARCH_QUERY = "SELECT id_car, tuition, brand, model, isRented FROM Car " +
+                "WHERE id_car = ? OR tuition LIKE ? OR brand LIKE ? OR model LIKE ?";
+        try (PreparedStatement ps = connection.prepareStatement(SEARCH_QUERY)) {
+            int searchId;
+            try {
+                searchId = Integer.parseInt(searchText);
+            } catch (NumberFormatException e) {
+                searchId = -1; // Valor inválido para el ID
+            }
+            ps.setInt(1, searchId);
+            String searchPattern = "%" + searchText + "%";
+            ps.setString(2, searchPattern);
+            ps.setString(3, searchPattern);
+            ps.setString(4, searchPattern);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    int id_car = rs.getInt("id_car");
+                    String tuition = rs.getString("tuition");
+                    String brand = rs.getString("brand");
+                    String model = rs.getString("model");
+                    boolean isRented = rs.getBoolean("isRented");
+                    Car car = new Car(id_car, tuition, brand, model, isRented);
+                    carList.add(car);
+                }
+            }
+        }
+        return carList;
+    }
+
 
     /**
      * Cierra la conexión a la base de datos.
