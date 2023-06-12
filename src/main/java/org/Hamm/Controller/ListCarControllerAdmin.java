@@ -6,8 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.Hamm.Model.Connections.ConnectionMySQL;
 import org.Hamm.Model.DAO.CarDAO;
+import org.Hamm.Model.DAO.ReservationDAO;
 import org.Hamm.Model.Domain.Car;
 
 import java.io.IOException;
@@ -56,6 +62,8 @@ public class ListCarControllerAdmin {
         carDAO = new CarDAO();
 
         try {
+            Connection connection = ConnectionMySQL.getConnect();
+            carDAO = new CarDAO(connection);
             List<Car> cars = carDAO.findAll();
             tableView.getItems().clear();
             tableView.getItems().addAll(cars);
@@ -134,6 +142,20 @@ public class ListCarControllerAdmin {
             }
         }
     }
+
+    @FXML
+    public void handleKeyReleased(KeyEvent event) {
+        if (event.getCode() == KeyCode.C) {
+            Car selectedCar = tableView.getSelectionModel().getSelectedItem();
+            if (selectedCar != null) {
+                tuitionTextField.setText(selectedCar.getTuition());
+                brandTextField.setText(selectedCar.getBrand());
+                modelTextField.setText(selectedCar.getModel());
+                isRentedCheckBox.setSelected(selectedCar.isRented());
+            }
+        }
+    }
+
 
     private void clearInputFields() {
         tuitionTextField.clear();

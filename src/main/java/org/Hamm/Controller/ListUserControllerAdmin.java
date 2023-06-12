@@ -6,11 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.MouseButton;
+import javafx.scene.input.*;
 import javafx.stage.Stage;
 import org.Hamm.Model.DAO.UserDAO;
+import org.Hamm.Model.Domain.Car;
 import org.Hamm.Model.Domain.User;
 import org.Hamm.Utils.PasswordUtils;
 
@@ -157,6 +156,20 @@ public class ListUserControllerAdmin {
 
         tableView.refresh();
         clearInputFields();
+    }
+
+    @FXML
+    public void handleKeyReleased(KeyEvent event) {
+        if (event.getCode() == KeyCode.C) {
+            User selectedUser = tableView.getSelectionModel().getSelectedItem();
+            if (selectedUser != null) {
+                emailTextField.setText(selectedUser.getEmail());
+                passwordTextField.setText(selectedUser.getPassword());
+                nameTextField.setText(selectedUser.getName());
+                surnameTextField.setText(selectedUser.getSurname());
+                phoneTextField.setText(selectedUser.getPhone());
+            }
+        }
     }
 
     private void clearInputFields() {

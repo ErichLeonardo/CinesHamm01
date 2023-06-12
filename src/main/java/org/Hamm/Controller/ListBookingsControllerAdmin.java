@@ -213,14 +213,16 @@ public class ListBookingsControllerAdmin {
             carListStage.setScene(new Scene(carListRoot, 970, 403));
 
             ListCarControllerAdmin carListController = fxmlLoader.getController();
-
             carListController.setConnection(connection);
+            carListController.execute(); // Call the execute() method to populate the TableView
+
             carListStage.show();
+
+            Stage stage = (Stage) tableView.getScene().getWindow();
+            stage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Stage stage = (Stage) tableView.getScene().getWindow();
-        stage.close();
     }
 
 

@@ -16,7 +16,7 @@
                 <Font name="Britannic Bold" size="30.0" />
             </font>
         </Label>
-        <TableView fx:id="tableView" layoutX="14.0" layoutY="80.0" prefHeight="290.0" prefWidth="678.0">
+        <TableView fx:id="tableView" onKeyReleased="#handleKeyReleased" layoutX="14.0" layoutY="80.0" prefHeight="290.0" prefWidth="678.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="45.20001411437988" text="id_film" />
                 <TableColumn fx:id="titleColumn" prefWidth="164.00006866455078" text="title" />
@@ -50,11 +50,11 @@
         <Label layoutX="702.0" layoutY="202.0" text="Genre:" />
         <Label layoutX="702.0" layoutY="250.0" text="Duration:" />
         <Label layoutX="702.0" layoutY="294.0" text="Synopsis:" />
-        <TextField fx:id="idTextField" layoutX="770.0" layoutY="117.0" prefWidth="180.0" />
-        <TextField fx:id="titleTextField" layoutX="770.0" layoutY="156.0" prefWidth="180.0" />
-        <TextField fx:id="genreTextField" layoutX="770.0" layoutY="198.0" prefWidth="180.0" />
-        <TextField fx:id="durationTextField" layoutX="770.0" layoutY="246.0" prefWidth="180.0" />
-        <TextField fx:id="synopsisTextField" layoutX="770.0" layoutY="290.0" prefWidth="180.0" />
+        <TextField fx:id="idTextField" onKeyReleased="#handleKeyReleased" layoutX="770.0" layoutY="117.0" prefWidth="180.0" />
+        <TextField fx:id="titleTextField" onKeyReleased="#handleKeyReleased" layoutX="770.0" layoutY="156.0" prefWidth="180.0" />
+        <TextField fx:id="genreTextField" onKeyReleased="#handleKeyReleased" layoutX="770.0" layoutY="198.0" prefWidth="180.0" />
+        <TextField fx:id="durationTextField" onKeyReleased="#handleKeyReleased" layoutX="770.0" layoutY="246.0" prefWidth="180.0" />
+        <TextField fx:id="synopsisTextField" onKeyReleased="#handleKeyReleased" layoutX="770.0" layoutY="290.0" prefWidth="180.0" />
         <TextField fx:id="searchField" layoutX="106.0" layoutY="21.0" />
         <Button fx:id="btnSearch" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleSearchButton" prefHeight="26.0" prefWidth="82.0" text="🔍 Search ">
             <font>
