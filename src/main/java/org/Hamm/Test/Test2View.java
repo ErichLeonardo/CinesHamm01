@@ -38,7 +38,7 @@ public class Test2View extends Application {
 
         Stage menuPrincipalStage = new Stage();
         menuPrincipalStage.setTitle("MenuPrincipal");
-        menuPrincipalStage.setScene(new Scene(menuPrincipalRoot, 600, 500));
+        menuPrincipalStage.setScene(new Scene(menuPrincipalRoot, 600, 400));
 
         MenuPrincipalController menuPrincipalController = fxmlLoader.getController();
         menuPrincipalController.setConnection(connection);
@@ -72,7 +72,7 @@ public class Test2View extends Application {
 
             Stage registerStage = new Stage();
             registerStage.setTitle("Register");
-            registerStage.setScene(new Scene(registerRoot, 600, 500));
+            registerStage.setScene(new Scene(registerRoot, 575, 515));
 
             RegisterController registerController = fxmlLoader.getController();
             registerController.setPrimaryStage(registerStage);

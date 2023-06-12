@@ -184,6 +184,8 @@ public class ListBookingsController {
             filmListStage.setTitle("Lista de películas");
             filmListStage.setScene(new Scene(filmListRoot, 765, 380));
 
+            Stage stage = (Stage) tableView.getScene().getWindow();
+            stage.close();
             filmListStage.show();
 
             ListFilmController filmListController = fxmlLoader.getController();
