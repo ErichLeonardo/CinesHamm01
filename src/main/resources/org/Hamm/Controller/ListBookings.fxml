@@ -13,7 +13,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Rectangle2D?>
 <AnchorPane prefHeight="362.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.ListBookingsController">
+    <ImageView depthTest="DISABLE" fitHeight="450.0" fitWidth="1262.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="110.404052734375" AnchorPane.topAnchor="0.0">
+        <image>
+            <Image url="@fondo.jpg" />
+        </image>
+        <viewport>
+            <Rectangle2D />
+        </viewport>
+    </ImageView>
     <children>
         <TableView fx:id="tableView" layoutX="22.0" layoutY="70.0" prefHeight="259.0" prefWidth="554.0">
             <columns>
@@ -55,7 +66,7 @@
             </columns>
 
         </TableView>
-        <Label layoutX="370.0" layoutY="21.0" text="CINES HAMM">
+        <Label layoutX="370.0" layoutY="21.0" text="CINES HAMM" textFill="#e1f434">
             <font>
                 <Font name="Britannic Bold" size="30.0" />
             </font>
@@ -102,17 +113,17 @@
                 <Font name="Britannic Bold" size="16.0" />
             </font>
         </Button>
-        <Label layoutX="595.0" layoutY="85.0" text="ID_USER">
+        <Label layoutX="595.0" layoutY="85.0" text="ID_USER" textFill="#FFFFFF">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <Label layoutX="595.0" layoutY="123.0" text="TUITION">
+        <Label layoutX="595.0" layoutY="123.0" text="TUITION" textFill="#FFFFFF">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <Label layoutX="595.0" layoutY="158.0" text="ID_FILM">
+        <Label layoutX="595.0" layoutY="158.0" text="ID_FILM" textFill="#FFFFFF">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -125,17 +136,17 @@
                 <Font name="Britannic Bold" size="16.0" />
             </font>
         </Button>
-        <Label layoutX="595.0" layoutY="198.0" text="DATE">
+        <Label layoutX="595.0" layoutY="198.0" text="DATE" textFill="#FFFFFF">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <Label layoutX="595.0" layoutY="238.0" text="TIME/LOC.">
+        <Label layoutX="595.0" layoutY="238.0" text="TIME/LOC." textFill="#FFFFFF">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-      <Label layoutX="22.0" layoutY="28.0" text="FILM CARS: 0001-0005 CIN">
+      <Label layoutX="22.0" layoutY="28.0" text="FILM CARS: 0001-0005 CIN" textFill="#e1f434">
          <font>
             <Font name="Arial Bold Italic" size="12.0" />
          </font>

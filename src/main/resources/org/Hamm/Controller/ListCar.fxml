@@ -9,10 +9,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Rectangle2D?>
 <AnchorPane prefHeight="403.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.ListCarControllerAdmin">
-
+    <ImageView depthTest="DISABLE" fitHeight="450.0" fitWidth="1262.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="110.404052734375" AnchorPane.topAnchor="0.0">
+        <image>
+            <Image url="@fondo.jpg" />
+        </image>
+        <viewport>
+            <Rectangle2D />
+        </viewport>
+    </ImageView>
     <children>
-        <Label layoutX="401.0" layoutY="18.0" text="CINES HAMM">
+        <Label layoutX="401.0" layoutY="18.0" text="CINES HAMM" textFill="#e1f434">
             <font>
                 <Font name="Britannic Bold" size="30.0" />
             </font>
@@ -41,19 +51,19 @@
                 <Font name="Britannic Bold" size="16.0" />
             </font>
         </Button>
-        <Label layoutX="799.0" layoutY="80.0" text="Add / Update Car">
+        <Label layoutX="799.0" layoutY="80.0" text="Add / Update Car" textFill="#e1f434">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="702.0" layoutY="160.0" text="Tuition:" />
-        <Label layoutX="702.0" layoutY="202.0" text="Brand:" />
-        <Label layoutX="702.0" layoutY="250.0" text="Model:" />
-        <Label layoutX="702.0" layoutY="294.0" text="Rented:" />
+        <Label layoutX="702.0" layoutY="160.0" text="Tuition:" textFill="#FFFFFF"/>
+        <Label layoutX="702.0" layoutY="202.0" text="Brand:" textFill="#FFFFFF"/>
+        <Label layoutX="702.0" layoutY="250.0" text="Model:" textFill="#FFFFFF"/>
+        <Label layoutX="702.0" layoutY="294.0" text="Rented:" textFill="#FFFFFF"/>
         <TextField fx:id="tuitionTextField" onKeyReleased="#handleKeyReleased" layoutX="759.0" layoutY="156.0" prefWidth="184.0" />
         <TextField fx:id="brandTextField" onKeyReleased="#handleKeyReleased" layoutX="759.0" layoutY="198.0" prefWidth="184.0" />
         <TextField fx:id="modelTextField" onKeyReleased="#handleKeyReleased" layoutX="759.0" layoutY="246.0" prefWidth="184.0" />
-        <CheckBox fx:id="isRentedCheckBox" onKeyReleased="#handleKeyReleased" layoutX="818.0" layoutY="294.0" mnemonicParsing="false" text="CheckBox" />
+        <CheckBox fx:id="isRentedCheckBox" onKeyReleased="#handleKeyReleased" layoutX="818.0" layoutY="294.0" mnemonicParsing="false" text="CheckBox" textFill="#FFFFFF"/>
       <Button fx:id="btnSearch" layoutX="22.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleSearchButton" prefHeight="26.0" prefWidth="82.0" text="🔍 Search ">
          <font>
             <Font name="Britannic Bold" size="12.0" />
