@@ -7,9 +7,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import org.Hamm.Model.DAO.FilmDAO;
+import org.Hamm.Model.Domain.Car;
 import org.Hamm.Model.Domain.Film;
 import org.Hamm.Model.Domain.User;
 
@@ -146,6 +149,20 @@ public class ListFilmControllerAdmin {
 
             clearInputFields();
             tableView.refresh();
+        }
+    }
+
+    @FXML
+    public void handleKeyReleased(KeyEvent event) {
+        if (event.getCode() == KeyCode.C) {
+            Film selectedFilm = tableView.getSelectionModel().getSelectedItem();
+            if (selectedFilm != null) {
+                idTextField.setText(String.valueOf(selectedFilm.getId_film()));
+                titleTextField.setText(selectedFilm.getTitle());
+                genreTextField.setText(selectedFilm.getGenre());
+                durationTextField.setText(String.valueOf(selectedFilm.getDuration()));
+                synopsisTextField.setText(selectedFilm.getSynopsis());
+            }
         }
     }
 
