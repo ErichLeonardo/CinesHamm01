@@ -5,6 +5,7 @@ import org.Hamm.Model.Domain.Reservation;
 
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,9 @@ public class ReservationDAO implements DAO<Reservation> {
 
     // Consulta para contar el número de reservas para una película en una fecha y hora específicas
     private final static String COUNT_RESERVATIONS_BY_DATE_TIME_AND_FILM = "SELECT COUNT(*) FROM reservation WHERE id_film = ? AND day = ? AND hour = ?";
+
+    private final static String COUNT_RESERVATIONS = "SELECT COUNT(*) FROM reservation";
+
 
     /**
      * Retrieves all reservations from the database.
@@ -258,6 +262,46 @@ public class ReservationDAO implements DAO<Reservation> {
     }
 
     /**
+     * Counts the total number of reservations in the "Reservation" table.
+     *
+     * @return the total number of reservations
+     * @throws SQLException if a database error occurs
+     */
+    public int countReservations() throws SQLException {
+        int count = 0;
+        try (PreparedStatement ps = connection.prepareStatement(COUNT_RESERVATIONS)) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        }
+        return count;
+    }
+
+
+    public List<Integer> countAccumulatedReservationsByYear() throws SQLException {
+        List<Integer> counts = new ArrayList<>();
+        String query = "SELECT COUNT(*) FROM Reservation WHERE EXTRACT(YEAR FROM day) <= ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            for (int year = 2023; year <= 2025; year++) { // Puedes ajustar los años según tus necesidades
+                ps.setInt(1, year);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    counts.add(count);
+                } else {
+                    counts.add(0);
+                }
+            }
+        }
+
+        return counts;
+    }
+
+
+
+    /**
      * Cierra la conexión a la base de datos.
      *
      * @throws Exception si ocurre algún error al cerrar la conexión
@@ -268,4 +312,5 @@ public class ReservationDAO implements DAO<Reservation> {
        //     connection.close();
        // }
     }
+
 }

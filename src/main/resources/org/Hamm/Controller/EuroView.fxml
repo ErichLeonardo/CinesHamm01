@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.EuroController">
+    <children>
+        <ImageView depthTest="DISABLE" fitHeight="450.0" fitWidth="1262.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="110.404052734375" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@fondo.jpg" />
+            </image>
+            <viewport>
+                <Rectangle2D />
+            </viewport>
+        </ImageView>
+        <Label layoutX="216.0" layoutY="18.0" text="CINES HAMM" textFill="#e1f434">
+            <font>
+                <Font name="Britannic Bold" size="30.0" />
+            </font>
+        </Label>
+        <Label fx:id="totalLabel" layoutX="372.0" layoutY="341.0" prefHeight="18.0" prefWidth="138.0" textFill="#e1f434">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font></Label>
+      <LineChart fx:id="lineChart" layoutX="77.0" layoutY="49.0" prefHeight="301.0" prefWidth="445.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" tickLabelFill="WHITE">
+               <tickLabelFont>
+                  <Font name="System Bold Italic" size="16.0" />
+               </tickLabelFont></NumberAxis>
+        </yAxis>
+      </LineChart>
+    </children>
+</AnchorPane>

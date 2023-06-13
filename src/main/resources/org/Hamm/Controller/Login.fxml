@@ -59,7 +59,7 @@
 
         </HBox>
 
-        <Label fx:id="errorLabel" textFill="RED">
+        <Label fx:id="errorLabel" textFill="YELLOW">
             <font>
                 <Font name="Britannic Bold" size="15.0" />
             </font>
