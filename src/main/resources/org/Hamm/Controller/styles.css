@@ -1,0 +1,19 @@
+/* styles.css */
+.table-view {
+    -fx-base: #transparent; /* Color de fondo para celdas no seleccionadas */
+}
+
+.table-view .column-header {
+    -fx-background-color: #e1f434;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: linear-gradient(to bottom, #3498db, #2980b9); /* Color de fondo para celdas seleccionadas */
+    -fx-text-fill: white; /* Color de texto para celdas seleccionadas */
+}
+
+
+
+
