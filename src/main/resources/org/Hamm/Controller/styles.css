@@ -4,7 +4,7 @@
 }
 
 .table-view .column-header {
-    -fx-background-color: #e1f434;
+    -fx-background-color:   #4a235a;
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
