@@ -1,10 +1,12 @@
 package org.Hamm.Model.DAO;
 
 import org.Hamm.Model.Connections.ConnectionMySQL;
+import org.Hamm.Model.Domain.Film;
 import org.Hamm.Model.Domain.Reservation;
 
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +59,12 @@ public class ReservationDAO implements DAO<Reservation> {
 
     // Consulta para contar el número de reservas para una película en una fecha y hora específicas
     private final static String COUNT_RESERVATIONS_BY_DATE_TIME_AND_FILM = "SELECT COUNT(*) FROM reservation WHERE id_film = ? AND day = ? AND hour = ?";
+
+    private final static String COUNT_RESERVATIONS = "SELECT COUNT(*) FROM reservation";
+
+    private final static String COUNT_RESERVATIONS_BY_FILM = "SELECT COUNT(*) FROM Reservation WHERE id_film = ?";
+
+
 
     /**
      * Retrieves all reservations from the database.
@@ -258,6 +266,37 @@ public class ReservationDAO implements DAO<Reservation> {
     }
 
     /**
+     * Counts the total number of reservations in the "Reservation" table.
+     *
+     * @return the total number of reservations
+     * @throws SQLException if a database error occurs
+     */
+    public int countReservations() throws SQLException {
+        int count = 0;
+        try (PreparedStatement ps = connection.prepareStatement(COUNT_RESERVATIONS)) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        }
+        return count;
+    }
+
+    public int countReservationsByFilm(Film film) throws SQLException {
+        int count = 0;
+        try (PreparedStatement ps = connection.prepareStatement(COUNT_RESERVATIONS_BY_FILM)) {
+            ps.setInt(1, film.getId_film());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        }
+        return count;
+    }
+
+
+
+    /**
      * Cierra la conexión a la base de datos.
      *
      * @throws Exception si ocurre algún error al cerrar la conexión
@@ -268,4 +307,5 @@ public class ReservationDAO implements DAO<Reservation> {
        //     connection.close();
        // }
     }
+
 }

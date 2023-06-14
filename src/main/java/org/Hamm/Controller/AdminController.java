@@ -75,6 +75,29 @@ public class AdminController {
     }
 
     @FXML
+    public void handleEuroButtonAdmin() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/EuroView.fxml"));
+            Parent euroRoot = fxmlLoader.load();
+
+            Stage euroStage = new Stage();
+            euroStage.setTitle("Euro View");
+            euroStage.setScene(new Scene(euroRoot, 600, 400));
+
+            EuroController euroController = fxmlLoader.getController();
+            euroController.setConnection(connection); // Pasar la conexión al controlador EuroController
+
+            euroController.initialize(); // Inicializar el controlador EuroController
+
+            euroStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
     public void handleSignOffAdminButton() {
         try {
             Stage currentStage = (Stage) userIdLabel.getScene().getWindow();
@@ -91,5 +114,7 @@ public class AdminController {
             e.printStackTrace();
         }
     }
+
+
 
 }
