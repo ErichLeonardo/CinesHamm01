@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.CarController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #95a5a6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.CarController">
     <ImageView depthTest="DISABLE" fitHeight="514.0" fitWidth="543.0" layoutX="28.0" layoutY="-18.0" preserveRatio="true" AnchorPane.bottomAnchor="-17.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="54.55035400390625" AnchorPane.topAnchor="-18.0">
         <image>
             <Image url="@coche.png" />
@@ -47,13 +47,13 @@
             </font>
         </Label>
 
-        <Button onAction="#handleAddCar" text="Add">
+        <Button onAction="#handleAddCar" style="-fx-background-color: #617cd6;" text="Add">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font></Button>
 
     </VBox>
-   <Label layoutX="256.0" layoutY="29.0" text="CINES HAMM">
+   <Label layoutX="256.0" layoutY="29.0" text="CINES HAMM" textFill="#e1f434">
       <font>
          <Font name="Britannic Bold" size="30.0" />
       </font>
