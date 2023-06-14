@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -10,26 +12,25 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.geometry.Rectangle2D?>
-<?import java.net.URL?>
 <AnchorPane prefHeight="362.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.ListBookingsController">
     <stylesheets>
         <URL value="@styles.css" />
     </stylesheets>
-    <ImageView depthTest="DISABLE" fitHeight="450.0" fitWidth="1262.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="110.404052734375" AnchorPane.topAnchor="0.0">
-        <image>
-            <Image url="@fondo.jpg" />
-        </image>
-        <viewport>
-            <Rectangle2D />
-        </viewport>
-    </ImageView>
+
     <children>
+        <ImageView depthTest="DISABLE" fitHeight="450.0" fitWidth="1262.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="110.404052734375" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@fondo.jpg" />
+            </image>
+            <viewport>
+                <Rectangle2D />
+            </viewport>
+        </ImageView>
         <TableView fx:id="tableView" layoutX="22.0" layoutY="70.0" prefHeight="259.0" prefWidth="554.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="104.00003433227539" text="id_reservation">
@@ -112,7 +113,7 @@
                 </FXCollections>
             </items>
         </ComboBox>
-        <Button layoutX="764.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleAddBookingButton" text="Add">
+        <Button layoutX="764.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleAddBookingButton" style="-fx-background-color: #617cd6;" text="Add">
             <font>
                 <Font name="Britannic Bold" size="16.0" />
             </font>
@@ -135,7 +136,7 @@
         <TextField fx:id="idUserField" layoutX="662.0" layoutY="81.0" />
         <TextField fx:id="tuitionCarField" layoutX="662.0" layoutY="119.0" />
         <TextField fx:id="idFilmField" layoutX="662.0" layoutY="154.0" />
-        <Button layoutX="594.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleMoviesButton" text="FILMS">
+        <Button layoutX="594.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleMoviesButton" style="-fx-background-color: #274d52;" text="FILMS" textFill="WHITE">
             <font>
                 <Font name="Britannic Bold" size="16.0" />
             </font>

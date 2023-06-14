@@ -42,13 +42,13 @@
       </TableView>
 
       <TextField fx:id="searchField" layoutX="108.0" layoutY="22.0" />
-      <Button fx:id="btnSearch" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleSearchButton" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #D9E542;" text="🔍 Search ">
+      <Button fx:id="btnSearch" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleSearchButton" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #f5b7b1;" text="🔍 Search ">
          <font>
             <Font name="Britannic Bold" size="12.0" />
          </font>
       </Button>
 
-      <Button layoutX="617.0" layoutY="20.0" mnemonicParsing="false" onAction="#showSynopsisDialog" style="-fx-background-color: #D9E542;" text="View more">
+      <Button layoutX="617.0" layoutY="20.0" mnemonicParsing="false" onAction="#showSynopsisDialog" style="-fx-background-color: #52be80;" text="View more">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>
