@@ -1,6 +1,7 @@
 package org.Hamm.Model.DAO;
 
 import org.Hamm.Model.Connections.ConnectionMySQL;
+import org.Hamm.Model.Domain.Film;
 import org.Hamm.Model.Domain.Reservation;
 
 
@@ -60,6 +61,9 @@ public class ReservationDAO implements DAO<Reservation> {
     private final static String COUNT_RESERVATIONS_BY_DATE_TIME_AND_FILM = "SELECT COUNT(*) FROM reservation WHERE id_film = ? AND day = ? AND hour = ?";
 
     private final static String COUNT_RESERVATIONS = "SELECT COUNT(*) FROM reservation";
+
+    private final static String COUNT_RESERVATIONS_BY_FILM = "SELECT COUNT(*) FROM Reservation WHERE id_film = ?";
+
 
 
     /**
@@ -278,25 +282,16 @@ public class ReservationDAO implements DAO<Reservation> {
         return count;
     }
 
-
-    public List<Integer> countAccumulatedReservationsByYear() throws SQLException {
-        List<Integer> counts = new ArrayList<>();
-        String query = "SELECT COUNT(*) FROM Reservation WHERE EXTRACT(YEAR FROM day) <= ?";
-
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
-            for (int year = 2023; year <= 2025; year++) { // Puedes ajustar los años según tus necesidades
-                ps.setInt(1, year);
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    int count = rs.getInt(1);
-                    counts.add(count);
-                } else {
-                    counts.add(0);
-                }
+    public int countReservationsByFilm(Film film) throws SQLException {
+        int count = 0;
+        try (PreparedStatement ps = connection.prepareStatement(COUNT_RESERVATIONS_BY_FILM)) {
+            ps.setInt(1, film.getId_film());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
             }
         }
-
-        return counts;
+        return count;
     }
 
 

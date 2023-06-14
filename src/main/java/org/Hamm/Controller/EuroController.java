@@ -1,23 +1,31 @@
 package org.Hamm.Controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Region;
+import javafx.util.StringConverter;
+import org.Hamm.Model.DAO.FilmDAO;
 import org.Hamm.Model.DAO.ReservationDAO;
+import org.Hamm.Model.Domain.Film;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class EuroController {
     @FXML
     private Label totalLabel;
 
     @FXML
-    private LineChart<String, Integer> lineChart;
+    private Label totalReservationsLabel;
+
+    @FXML
+    private Label reservationsByFilmLabel;
+
+    @FXML
+    private ChoiceBox<Film> filmChoiceBox;
 
     private Connection connection;
 
@@ -28,33 +36,56 @@ public class EuroController {
     public void initialize() {
         try {
             ReservationDAO reservationDAO = new ReservationDAO();
+            FilmDAO filmDAO = new FilmDAO();
 
-            List<Integer> counts = reservationDAO.countAccumulatedReservationsByYear();
-
-            int total = counts.get(counts.size() - 1);
+            // Obtener el número total de reservas
+            int total = reservationDAO.countReservations();
             double totalEuros = total * 3;
             totalLabel.setText("Total: " + totalEuros + " euros");
+            totalReservationsLabel.setText("Total reservations: " + total);
 
-            XYChart.Series<String, Integer> series = new XYChart.Series<>();
+            // Obtener la lista de películas desde la base de datos
+            List<Film> films = filmDAO.findAll();
 
-            for (int i = 0; i < counts.size(); i++) {
-                String year = String.valueOf(LocalDate.now().getYear() + i); // Obtener el año actual y sumar el índice para obtener el año correspondiente
-                series.getData().add(new XYChart.Data<>(year, counts.get(i)));
-            }
+            // Eliminar duplicados usando un HashSet
+            Set<Film> uniqueFilms = new HashSet<>(films);
 
-            lineChart.setAnimated(false); // Desactivar la animación para evitar que los valores aparezcan temporalmente
-            lineChart.setCreateSymbols(true); // Mostrar los símbolos de los datos
-            lineChart.getData().add(series);
+            // Limpiar el ChoiceBox antes de agregar los elementos
+            filmChoiceBox.getItems().clear();
 
-            // Ocultar los valores en el eje Y
-            lineChart.getYAxis().setTickLabelsVisible(false);
-            lineChart.getYAxis().setOpacity(0);
+            // Agregar los títulos de las películas al ChoiceBox
+            filmChoiceBox.getItems().addAll(uniqueFilms);
 
-            // Ajustar el tamaño del gráfico para evitar espacios vacíos debajo de la gráfica
-            lineChart.setMaxHeight(Region.USE_PREF_SIZE);
+            // Personalizar la forma en que se muestra cada elemento en el ChoiceBox
+            filmChoiceBox.setConverter(new StringConverter<Film>() {
+                @Override
+                public String toString(Film film) {
+                    return film.getTitle();
+                }
 
+                @Override
+                public Film fromString(String string) {
+                    // No se necesita implementar en este caso
+                    return null;
+                }
+            });
+
+            // Manejar el evento de selección de una película en el ChoiceBox
+            filmChoiceBox.setOnAction(event -> {
+                Film selectedFilm = filmChoiceBox.getValue();
+                if (selectedFilm != null) {
+                    int reservationsBySelectedFilm = 0;
+                    try {
+                        reservationsBySelectedFilm = reservationDAO.countReservationsByFilm(selectedFilm);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    reservationsByFilmLabel.setText(String.valueOf(reservationsBySelectedFilm));
+                }
+            });
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 }
