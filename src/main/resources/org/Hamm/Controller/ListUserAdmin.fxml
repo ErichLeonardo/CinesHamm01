@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.CheckBox?>
-<?import java.net.URL?>
+
 <AnchorPane prefHeight="450.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.ListUserControllerAdmin">
     <stylesheets>
         <URL value="@styles.css" />
     </stylesheets>
-    <ImageView depthTest="DISABLE" fitHeight="450.0" fitWidth="1262.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="110.404052734375" AnchorPane.topAnchor="0.0">
-        <image>
-            <Image url="@fondo.jpg" />
-        </image>
-        <viewport>
-            <Rectangle2D />
-        </viewport>
-    </ImageView>
-    <children>
 
+    <children>
+        <ImageView depthTest="DISABLE" fitHeight="450.0" fitWidth="1262.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="110.404052734375" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@fondo.jpg" />
+            </image>
+            <viewport>
+                <Rectangle2D />
+            </viewport>
+        </ImageView>
         <Label layoutX="401.0" layoutY="18.0" text="CINES HAMM" textFill="#e1f434">
             <font>
                 <Font name="Britannic Bold" size="30.0" />
@@ -48,7 +48,7 @@
                 <Font name="Britannic Bold" size="16.0" />
             </font>
         </Button>
-        <Button layoutX="835.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleMakeAdminButton" prefHeight="30.0" prefWidth="114.0" text="Make Admin">
+        <Button layoutX="835.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleMakeAdminButton" prefHeight="30.0" prefWidth="114.0" style="-fx-background-color: #D9E542;" text="Make Admin">
             <font>
                 <Font name="Britannic Bold" size="16.0" />
             </font>
@@ -64,18 +64,18 @@
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="703.0" layoutY="124.0" text="Email:" textFill="#FFFFFF"/>
-        <Label layoutX="703.0" layoutY="164.0" text="Password:" textFill="#FFFFFF"/>
-        <Label layoutX="703.0" layoutY="206.0" text="Name:" textFill="#FFFFFF"/>
-        <Label layoutX="703.0" layoutY="244.0" text="Surname:" textFill="#FFFFFF"/>
-        <Label layoutX="703.0" layoutY="284.0" text="Phone:" textFill="#FFFFFF"/>
-        <Label layoutX="703.0" layoutY="324.0" text="IsAdmin:" textFill="#FFFFFF"/>
+        <Label layoutX="703.0" layoutY="124.0" text="Email:" textFill="#FFFFFF" />
+        <Label layoutX="703.0" layoutY="164.0" text="Password:" textFill="#FFFFFF" />
+        <Label layoutX="703.0" layoutY="206.0" text="Name:" textFill="#FFFFFF" />
+        <Label layoutX="703.0" layoutY="244.0" text="Surname:" textFill="#FFFFFF" />
+        <Label layoutX="703.0" layoutY="284.0" text="Phone:" textFill="#FFFFFF" />
+        <Label layoutX="703.0" layoutY="324.0" text="IsAdmin:" textFill="#FFFFFF" />
         <TextField fx:id="emailTextField" layoutX="770.0" layoutY="120.0" onKeyReleased="#handleKeyReleased" prefWidth="180.0" />
         <TextField fx:id="passwordTextField" layoutX="770.0" layoutY="160.0" onKeyReleased="#handleKeyReleased" prefWidth="180.0" />
         <TextField fx:id="nameTextField" layoutX="770.0" layoutY="200.0" onKeyReleased="#handleKeyReleased" prefWidth="180.0" />
         <TextField fx:id="surnameTextField" layoutX="770.0" layoutY="240.0" onKeyReleased="#handleKeyReleased" prefWidth="180.0" />
         <TextField fx:id="phoneTextField" layoutX="770.0" layoutY="280.0" onKeyReleased="#handleKeyReleased" prefWidth="180.0" />
-        <CheckBox fx:id="isAdminCheckBox" layoutX="807.0" layoutY="324.0" mnemonicParsing="false" onKeyReleased="#handleKeyReleased" text="CheckBox" textFill="#FFFFFF"/>
+        <CheckBox fx:id="isAdminCheckBox" layoutX="807.0" layoutY="324.0" mnemonicParsing="false" onKeyReleased="#handleKeyReleased" text="CheckBox" textFill="#FFFFFF" />
 
 
         <Button layoutX="705.0" layoutY="370.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="30.0" prefWidth="53.0" text="ADD">
@@ -84,7 +84,7 @@
          </font>
       </Button>
       <TextField fx:id="searchField" layoutX="106.0" layoutY="21.0" />
-      <Button fx:id="btnSearch" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleSearchButton" prefHeight="26.0" prefWidth="82.0" text="🔍 Search ">
+      <Button fx:id="btnSearch" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleSearchButton" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #D9E542;" text="🔍 Search ">
          <font>
             <Font name="Britannic Bold" size="12.0" />
          </font>
