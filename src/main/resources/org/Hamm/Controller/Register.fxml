@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="480.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.RegisterController">
+<AnchorPane prefHeight="480.0" prefWidth="486.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.RegisterController">
    <children>
       <ImageView depthTest="DISABLE" fitHeight="517.0" fitWidth="474.0" layoutX="-1.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="118.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -77,7 +77,7 @@
             </font>
          </TextField>
 
-         <Button onAction="#register" text="Register">
+         <Button onAction="#register" style="-fx-background-color: #fdcae1;" text="Register">
             <font>
                <Font name="Britannic Bold" size="15.0" />
             </font>
@@ -88,7 +88,7 @@
             <Font name="Britannic Bold" size="30.0" />
          </font>
       </Label>
-      <Button layoutX="332.0" layoutY="35.0" mnemonicParsing="false" onAction="#BacktoLogin" text="↩" AnchorPane.bottomAnchor="456.4" AnchorPane.leftAnchor="332.0" AnchorPane.rightAnchor="212.4558898925781" AnchorPane.topAnchor="35.0">
+      <Button layoutX="332.0" layoutY="35.0" mnemonicParsing="false" onAction="#BacktoLogin" style="-fx-background-color: #fdcae1;" text="↩" AnchorPane.bottomAnchor="456.4" AnchorPane.leftAnchor="332.0" AnchorPane.rightAnchor="212.4558898925781" AnchorPane.topAnchor="35.0">
          <font>
             <Font name="Britannic Bold" size="15.0" />
          </font>
