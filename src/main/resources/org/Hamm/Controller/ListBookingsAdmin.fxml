@@ -21,15 +21,16 @@
     <stylesheets>
         <URL value="@styles.css" />
     </stylesheets>
-    <ImageView depthTest="DISABLE" fitHeight="450.0" fitWidth="1262.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="110.404052734375" AnchorPane.topAnchor="0.0">
-        <image>
-            <Image url="@fondo.jpg" />
-        </image>
-        <viewport>
-            <Rectangle2D />
-        </viewport>
-    </ImageView>
+
     <children>
+        <ImageView depthTest="DISABLE" fitHeight="450.0" fitWidth="1262.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="110.404052734375" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@fondo.jpg" />
+            </image>
+            <viewport>
+                <Rectangle2D />
+            </viewport>
+        </ImageView>
       <TableView fx:id="tableView" layoutX="22.0" layoutY="70.0" prefHeight="259.0" prefWidth="554.0">
           <columns>
               <TableColumn fx:id="idColumn" prefWidth="104.00003433227539" text="id_reservation">
