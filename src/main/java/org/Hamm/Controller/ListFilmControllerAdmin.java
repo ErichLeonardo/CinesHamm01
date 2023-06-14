@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
@@ -183,14 +185,24 @@ public class ListFilmControllerAdmin {
         Film selectedFilm = tableView.getSelectionModel().getSelectedItem();
         if (selectedFilm != null) {
             String synopsis = selectedFilm.getSynopsis();
+            String title = selectedFilm.getTitle();
 
             Dialog<String> dialog = new Dialog<>();
             dialog.setTitle("Sinopsis");
             dialog.setHeaderText(null);
 
             DialogPane dialogPane = dialog.getDialogPane();
-            dialogPane.setContentText(synopsis);
             dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+
+
+            String imagePath = "/org/Hamm/Controller/" + title + ".jpg";
+            Image cover = new Image(getClass().getResourceAsStream(imagePath));
+            ImageView imageView = new ImageView(cover);
+            imageView.setFitWidth(150);
+            imageView.setPreserveRatio(true);
+            dialogPane.setGraphic(imageView);
+
+            dialogPane.setContentText(synopsis);
 
             ButtonType okButton = new ButtonType("OK");
             dialogPane.getButtonTypes().add(okButton);
