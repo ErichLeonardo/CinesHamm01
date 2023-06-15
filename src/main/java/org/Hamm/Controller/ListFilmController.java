@@ -42,6 +42,12 @@ public class ListFilmController {
     @FXML
     private TextField searchField;
 
+    private int userId;
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     private FilmDAO filmDAO;
 
 
@@ -161,6 +167,7 @@ public class ListFilmController {
 
                 ListBookingsController bookingsController = loader.getController();
                 bookingsController.setConnection(connection);
+                bookingsController.setUserId(userId);
                 bookingsController.setFilmId(selectedFilm.getId_film());
                 bookingsController.execute(); // Cargar los datos en la vista
 
