@@ -99,7 +99,6 @@ public class ListFilmController {
             DialogPane dialogPane = dialog.getDialogPane();
             dialogPane.setMinHeight(Region.USE_PREF_SIZE);
 
-
             String imagePath = "/org/Hamm/Controller/" + title + ".jpg";
             Image cover = new Image(getClass().getResourceAsStream(imagePath));
             ImageView imageView = new ImageView(cover);
@@ -109,12 +108,35 @@ public class ListFilmController {
 
             dialogPane.setContentText(synopsis);
 
+            ButtonType reviewButton = new ButtonType("Review");
             ButtonType okButton = new ButtonType("OK");
-            dialogPane.getButtonTypes().add(okButton);
+            dialogPane.getButtonTypes().addAll(reviewButton, okButton);
+
+            Button reviewButtonControl = (Button) dialogPane.lookupButton(reviewButton);
+            reviewButtonControl.setOnAction(e -> openReviewWindow(title, dialog));
 
             dialog.showAndWait();
         }
     }
+
+    private void openReviewWindow(String movieTitle, Dialog<String> dialog) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/AddReview.fxml"));
+            Parent root = loader.load();
+
+            ReviewController reviewController = loader.getController();
+            reviewController.setMovieTitle(movieTitle);
+
+            Stage stage = new Stage();
+            stage.setTitle("Agregar Reseña");
+            stage.setScene(new Scene(root));
+            stage.setOnHidden(e -> dialog.close()); // Cerrar el diálogo cuando se cierre la ventana de revisión
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     @FXML
