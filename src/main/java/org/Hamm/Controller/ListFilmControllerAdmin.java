@@ -1,6 +1,5 @@
 package org.Hamm.Controller;
 
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,9 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import org.Hamm.Model.DAO.FilmDAO;
-import org.Hamm.Model.Domain.Car;
 import org.Hamm.Model.Domain.Film;
-import org.Hamm.Model.Domain.User;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -210,6 +207,31 @@ public class ListFilmControllerAdmin {
             dialog.showAndWait();
         }
     }
+
+    @FXML
+    private void showAllReviews() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/ListReviewsAdmin.fxml"));
+            Parent reviewListRoot = fxmlLoader.load();
+
+            Stage reviewListStage = new Stage();
+            reviewListStage.setTitle("List of Reviews");
+            reviewListStage.setScene(new Scene(reviewListRoot, 970, 403));
+
+            ListReviewAdmin reviewsAdmin = fxmlLoader.getController();
+            reviewsAdmin.setConnection(connection);
+            reviewsAdmin.execute();
+
+            reviewListStage.show();
+
+            Stage stage = (Stage) tableView.getScene().getWindow();
+            stage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     @FXML
