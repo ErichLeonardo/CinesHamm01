@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.Hamm.Model.Connections.ConnectionMySQL;
 import org.Hamm.Model.DAO.ReviewDAO;
+import org.Hamm.Model.Domain.Film;
 import org.Hamm.Model.Domain.Review;
 
 import java.sql.Connection;
@@ -73,4 +74,20 @@ public class ListReviewAdmin {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void handleDeleteButton() throws SQLException {
+        Review selectedReview = tableView.getSelectionModel().getSelectedItem();
+        if (selectedReview == null) {
+            System.out.println("No se ha seleccionado ninguna review.");
+            return;
+        }
+
+        reviewDAO.deleteReview(selectedReview);
+        tableView.getItems().remove(selectedReview);
+        System.out.println("Review eliminada: " + selectedReview);
+    }
+
+
+
 }

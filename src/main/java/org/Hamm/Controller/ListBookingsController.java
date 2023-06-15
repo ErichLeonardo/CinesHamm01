@@ -69,6 +69,13 @@ public class ListBookingsController {
     @FXML
     private ComboBox<String> locationComboBox;
 
+    private int userId;
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+        idUserField.setText(String.valueOf(userId));
+    }
+
     public void setFilmId(int filmId){
         idFilmField.setText(String.valueOf(filmId));
     }

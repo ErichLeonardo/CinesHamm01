@@ -68,4 +68,16 @@ public class ReviewDAO {
         return matchingReviews;
     }
 
+    public void deleteReview(Review review) throws SQLException {
+        String sql = "DELETE FROM review WHERE name_of_the_movie = ? AND review = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, review.getNameOfTheName());
+            statement.setString(2, review.getReview());
+
+            statement.executeUpdate();
+        }
+    }
+
+
 }

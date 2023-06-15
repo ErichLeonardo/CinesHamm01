@@ -58,12 +58,14 @@ public class MenuPrincipalController {
 
             ListBookingsController bookingsController = fxmlLoader.getController();
             bookingsController.setConnection(connection); // Pasar la conexión al controlador de la lista de reservas
+            bookingsController.setUserId(userId); // Pasar el ID del usuario al controlador de la lista de reservas
             bookingsController.execute();
             bookingsStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     /**
      * View the carview where u can add a car.

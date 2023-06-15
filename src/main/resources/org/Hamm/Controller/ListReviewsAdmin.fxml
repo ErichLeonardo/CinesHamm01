@@ -44,5 +44,10 @@
             </font>
         </Button>
         <TextField fx:id="searchField" layoutX="143.0" layoutY="27.0" />
+      <Button layoutX="880.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleDeleteButton" style="-fx-background-color: #d35f55;" text="Delete">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
