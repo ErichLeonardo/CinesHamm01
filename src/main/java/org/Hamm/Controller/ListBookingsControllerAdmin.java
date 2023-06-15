@@ -70,6 +70,35 @@ public class ListBookingsControllerAdmin {
     @FXML
     private ComboBox<String> locationComboBox;
 
+    private String lastUserId;
+    private String lastCarTuition;
+    private String lastFilmId;
+
+    private String getLastUserId() {
+        return lastUserId;
+    }
+
+    private String getLastCarTuition() {
+        return lastCarTuition;
+    }
+
+    private String getLastFilmId() {
+        return lastFilmId;
+    }
+
+    private void setLastUserId(String userId) {
+        lastUserId = userId;
+    }
+
+    private void setLastCarTuition(String carTuition) {
+        lastCarTuition = carTuition;
+    }
+
+    private void setLastFilmId(String filmId) {
+        lastFilmId = filmId;
+    }
+
+
     public void setUserId(int userId) {
         idUserField.setText(String.valueOf(userId));
     }
@@ -105,14 +134,25 @@ public class ListBookingsControllerAdmin {
             timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
             locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
 
-            try {
-                Connection connection = ConnectionMySQL.getConnect();
-                reservationDAO = new ReservationDAO(connection); // Inicializar reservationDAO aquí
-                List<Reservation> reservations = reservationDAO.findAll();
-                tableView.getItems().addAll(reservations);
-            } catch (SQLException e) {
-                e.printStackTrace();
+        try {
+            Connection connection = ConnectionMySQL.getConnect();
+            reservationDAO = new ReservationDAO(connection); // Inicializar reservationDAO aquí
+            List<Reservation> reservations = reservationDAO.findAll();
+            tableView.getItems().addAll(reservations);
+
+            // Restaurar los valores anteriores si existen
+            if (lastUserId != null) {
+                idUserField.setText(lastUserId);
             }
+            if (lastCarTuition != null) {
+                tuitionCarField.setText(lastCarTuition);
+            }
+            if (lastFilmId != null) {
+                idFilmField.setText(lastFilmId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         }
 
     @FXML
@@ -163,15 +203,19 @@ public class ListBookingsControllerAdmin {
             reservationDAO.insert(reservation);
             tableView.getItems().add(reservation);
 
+            setLastUserId(idUserField.getText());
+            setLastCarTuition(tuitionCarField.getText());
+            setLastFilmId(idFilmField.getText());
+
             idUserField.clear();
             tuitionCarField.clear();
             idFilmField.clear();
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
 
 
     @FXML
@@ -186,6 +230,25 @@ public class ListBookingsControllerAdmin {
             }
         }
     }
+
+    @FXML
+    public void handleClearButton() {
+        idUserField.clear();
+        tuitionCarField.clear();
+        idFilmField.clear();
+
+        // Restaurar los valores anteriores si existen
+        if (lastUserId != null) {
+            idUserField.setText(lastUserId);
+        }
+        if (lastCarTuition != null) {
+            tuitionCarField.setText(lastCarTuition);
+        }
+        if (lastFilmId != null) {
+            idFilmField.setText(lastFilmId);
+        }
+    }
+
 
     @FXML
     public void handleMoviesButton() {

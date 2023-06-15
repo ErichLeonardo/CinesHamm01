@@ -197,6 +197,7 @@ public class ListBookingsController {
 
             ListFilmController filmListController = fxmlLoader.getController();
             filmListController.setConnection(connection); // Pasar la conexión al controlador de la lista de películas
+            filmListController.setUserId(userId);
             filmListController.execute(); // Ejecutar el método para cargar los datos en la tabla
         } catch (IOException e) {
             e.printStackTrace();
