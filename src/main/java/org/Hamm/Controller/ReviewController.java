@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -26,6 +27,8 @@ public class ReviewController {
     private TextField movieTitleField;
     @FXML
     private TextArea movieReviewField;
+    @FXML
+    private Label statusLabel;
 
     public void setConnection(Connection connection) {
         this.connection = connection;
@@ -51,6 +54,7 @@ public class ReviewController {
             Review newReview = new Review(NameOfTheName, Review);
             reviewDAO.addReview(newReview);
 
+            statusLabel.setText("Review added successfully!");
             movieTitleField.clear();
             movieReviewField.clear();
 

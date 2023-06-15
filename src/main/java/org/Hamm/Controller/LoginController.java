@@ -62,25 +62,29 @@ public class LoginController {
                 // Abrir la siguiente ventana
                 if (authenticatedUser.isIs_admin()) {
                     test2View.openAdminWindow(authenticatedUser, connection); // Abrir ventana de administrador
-
+                    Stage currentStage = (Stage) emailField.getScene().getWindow();
+                    currentStage.close();
                 } else {
                     test2View.openMenuWindow(authenticatedUser, connection); // Abrir ventana de usuario normal
-
+                    Stage currentStage = (Stage) emailField.getScene().getWindow();
+                    currentStage.close();
                 }
             } else {
                 // Credenciales inválidas, mostrar mensaje de error
-                errorLabel.setText("Credenciales inválidas");
+                errorLabel.setText("Invalid credentials!");
             }
 
-            Stage currentStage = (Stage) emailField.getScene().getWindow();
-            currentStage.close();
-
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            // Error de conexión o consulta SQL, mostrar mensaje de error
+            errorLabel.setText("Database error");
+            e.printStackTrace();
         } catch (IOException e) {
+            // Error de lectura/escritura, mostrar mensaje de error
+            errorLabel.setText("IO error");
             e.printStackTrace();
         }
     }
+
 
     /**
      * Button to open the registerview
