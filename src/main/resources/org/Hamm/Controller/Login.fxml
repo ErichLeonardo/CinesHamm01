@@ -13,6 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Hamm.Controller.LoginController">
+    <children>
     <ImageView depthTest="DISABLE" fitHeight="460.0" fitWidth="726.0" layoutX="-63.0" layoutY="-29.0" preserveRatio="true" AnchorPane.bottomAnchor="-28.04998779296875" AnchorPane.leftAnchor="-63.0" AnchorPane.rightAnchor="-63.0" AnchorPane.topAnchor="-29.0">
         <image>
             <Image url="@cine.png" />
@@ -59,9 +60,9 @@
 
         </HBox>
 
-        <Label fx:id="errorLabel" textFill="YELLOW">
+        <Label fx:id="errorLabel" textFill="WHITE">
             <font>
-                <Font name="Britannic Bold" size="15.0" />
+                <Font name="Britannic Bold" size="16.0" />
             </font>
         </Label>
     </VBox>
@@ -71,5 +72,5 @@
             <Font name="Britannic Bold" size="30.0" />
         </font>
     </Label>
-
+    </children>
 </AnchorPane>
