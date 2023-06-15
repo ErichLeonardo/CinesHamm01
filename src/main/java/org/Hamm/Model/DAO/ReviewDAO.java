@@ -19,14 +19,14 @@ public class ReviewDAO {
     public List<Review> findAll() throws SQLException {
         List<Review> reviews = new ArrayList<>();
 
-        String sql = "SELECT review, name_of_the_movie FROM review";
+        String sql = "SELECT name_of_the_movie, review FROM review";
 
         try (PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
-                String reviewText = resultSet.getString("review");
                 String movieName = resultSet.getString("name_of_the_movie");
+                String reviewText = resultSet.getString("review");
 
                 Review review = new Review(reviewText, movieName);
                 reviews.add(review);
@@ -37,13 +37,35 @@ public class ReviewDAO {
     }
 
     public void addReview(Review review) throws SQLException {
-        String sql = "INSERT INTO review (review, name_of_the_movie) VALUES (?, ?)";
+        String sql = "INSERT INTO review (name_of_the_movie, review) VALUES (?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, review.getReview());
-            statement.setString(2, review.getNameOfTheName());
+            statement.setString(1, review.getNameOfTheName());
+            statement.setString(2, review.getReview());
 
             statement.executeUpdate();
         }
     }
+
+    public List<Review> search(String newValue) throws SQLException {
+        List<Review> matchingReviews = new ArrayList<>();
+
+        String sql = "SELECT name_of_the_movie, review FROM review WHERE name_of_the_movie LIKE ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, "%" + newValue + "%");
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    String movieName = resultSet.getString("name_of_the_movie");
+                    String reviewText = resultSet.getString("review");
+
+                    Review review = new Review(reviewText, movieName);
+                    matchingReviews.add(review);
+                }
+            }
+        }
+        return matchingReviews;
+    }
+
 }

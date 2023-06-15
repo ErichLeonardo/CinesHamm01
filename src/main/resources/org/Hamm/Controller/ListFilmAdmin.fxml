@@ -81,6 +81,11 @@
             <Font name="Britannic Bold" size="16.0" />
          </font>
       </Button>
+      <Button onAction="#showAllReviews" layoutX="712.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: #74B82F;" text="Reviews">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font>
+      </Button>
     </children>
 
 </AnchorPane>
