@@ -136,7 +136,7 @@ public class ReservationDAO implements DAO<Reservation> {
             if (rsCheck.next()) {
                 int count = rsCheck.getInt(1);
                 if (count > 0) {
-                    throw new SQLException("Ya existe una reserva con el mismo id, la misma hora y el mismo día hecha por el mismo usuario.");
+                    throw new SQLException("A reservation with the same ID, time, and date already exists for the same user.");
                 }
             }
         }
@@ -148,7 +148,7 @@ public class ReservationDAO implements DAO<Reservation> {
             if (rsLocation.next()) {
                 int count = rsLocation.getInt(1);
                 if (count > 0) {
-                    throw new SQLException("Ya existe una reserva para la misma hora y día en esta ubicación.");
+                    throw new SQLException("A reservation for the same time and date already exists at this location.");
                 }
             }
         }
@@ -169,6 +169,7 @@ public class ReservationDAO implements DAO<Reservation> {
 
         return entity;
     }
+
 
     /**
      * Deletes a reservation from the database.
@@ -237,6 +238,7 @@ public class ReservationDAO implements DAO<Reservation> {
             }
         }
     }
+
 
     /**
      * Retrieves a list of reservations for a specific film.
