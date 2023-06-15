@@ -52,10 +52,16 @@
             <Font name="Britannic Bold" size="16.0" />
          </font></Button>
 
+        <Label fx:id="statusLabel" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
     </VBox>
    <Label layoutX="256.0" layoutY="29.0" text="CINES HAMM" textFill="#e1f434">
       <font>
          <Font name="Britannic Bold" size="30.0" />
       </font>
    </Label>
+
 </AnchorPane>

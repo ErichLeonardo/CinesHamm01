@@ -4,13 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.Hamm.Model.DAO.CarDAO;
-import org.Hamm.Model.DAO.FilmDAO;
 import org.Hamm.Model.Domain.Car;
+import org.Hamm.Utils.Validator;
 
 public class CarController {
     private Connection connection;
@@ -22,7 +21,8 @@ public class CarController {
     private TextField brandField;
     @FXML
     private TextField modelField;
-
+    @FXML
+    private Label statusLabel;
 
     public void setConnection(Connection connection) {
         this.connection = connection;
@@ -46,17 +46,20 @@ public class CarController {
             String model = modelField.getText();
             boolean isRented = false;
 
-            Car newCar = new Car(tuition, brand, model, isRented);
-            carDAO.insert(newCar);
+            if (Validator.validateTuition(tuition)) {
+                Car newCar = new Car(tuition, brand, model, isRented);
+                carDAO.insert(newCar);
 
-            tuitionField.clear();
-            brandField.clear();
-            modelField.clear();
+                statusLabel.setText("Car added successfully!");
+                tuitionField.clear();
+                brandField.clear();
+                modelField.clear();
+            } else {
+                statusLabel.setText("Invalid tuition!");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
 }
