@@ -57,6 +57,8 @@ public class ListBookingsController {
     @FXML
     private TableColumn<Reservation, String> locationColumn;
     @FXML
+    private Label labelError;
+    @FXML
     private TextField idUserField;
     @FXML
     public TextField tuitionCarField;
@@ -68,6 +70,10 @@ public class ListBookingsController {
     private ComboBox<String> timeComboBox;
     @FXML
     private ComboBox<String> locationComboBox;
+
+    private void showError(String message) {
+        labelError.setText(message);
+    }
 
     private int userId;
 
@@ -167,13 +173,13 @@ public class ListBookingsController {
             reservationDAO.insert(reservation);
             tableView.getItems().add(reservation);
 
-        idUserField.clear();
-        tuitionCarField.clear();
-        idFilmField.clear();
-
+            idUserField.clear();
+            tuitionCarField.clear();
+            idFilmField.clear();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            String errorMessage = e.getMessage();
+            showError(errorMessage);
         }
     }
 
