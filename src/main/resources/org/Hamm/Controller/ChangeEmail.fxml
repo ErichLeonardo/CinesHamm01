@@ -48,7 +48,7 @@
             <Font name="Britannic Bold" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="statusLabel" layoutX="333.0" layoutY="261.0" text="Email" textFill="WHITE">
+      <Label fx:id="statusLabel" layoutX="333.0" layoutY="261.0" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>
