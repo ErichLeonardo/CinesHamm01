@@ -6,10 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.Hamm.Model.DAO.UserDAO;
+import org.Hamm.Model.Domain.User;
 import org.Hamm.Test.Test2View;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class MenuPrincipalController {
     @FXML
@@ -24,6 +27,7 @@ public class MenuPrincipalController {
 
     /**
      * U can see your id of user.
+     *
      * @param id_user
      */
     public void setUserId(int id_user) {
@@ -89,8 +93,36 @@ public class MenuPrincipalController {
         }
     }
 
+    @FXML
+    public void handleProfileButton() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/ChangeEmail.fxml"));
+            Parent root = fxmlLoader.load();
+
+            // Obtener el controlador del archivo FXML cargado
+            ChangeEmail controller = fxmlLoader.getController();
+
+            // Obtener el correo electrónico del usuario y establecerlo en el campo emailField
+            UserDAO userDAO = new UserDAO(); // Suponiendo que tienes una clase UserDAO para acceder a la base de datos
+            User user = userDAO.findById(userId); // Obtener el usuario según el ID del menú principal
+            if (user != null) {
+                controller.setEmailField(user.getEmail()); // Establecer el correo electrónico en el campo emailField del controlador de ChangeEmail
+            }
+
+            // Crear un nuevo escenario y establecer el contenido
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     /**
-     *Back to login view
+     * Back to login view
      */
     @FXML
     public void handleSignOffButton() {
@@ -109,6 +141,4 @@ public class MenuPrincipalController {
             e.printStackTrace();
         }
     }
-
-
 }

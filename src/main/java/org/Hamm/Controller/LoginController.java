@@ -1,6 +1,8 @@
 package org.Hamm.Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -29,6 +31,11 @@ public class LoginController {
     private Test2View test2View;
 
     private User authenticatedUser;
+
+    public void setEmailField(String email) {
+        emailField.setText(email);
+    }
+
 
     public LoginController() {
         test2View = Test2View.getInstance(); // Obtener la instancia actual de Test2View
@@ -75,15 +82,14 @@ public class LoginController {
             }
 
         } catch (SQLException e) {
-            // Error de conexión o consulta SQL, mostrar mensaje de error
-            errorLabel.setText("Database error");
             e.printStackTrace();
         } catch (IOException e) {
-            // Error de lectura/escritura, mostrar mensaje de error
-            errorLabel.setText("IO error");
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+
     }
+
+
 
 
     /**
@@ -96,4 +102,5 @@ public class LoginController {
 
         test2View.openRegisterWindow();
     }
+
 }
