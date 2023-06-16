@@ -53,5 +53,10 @@
             <Font name="Britannic Bold" size="30.0" />
          </font>
       </Label>
+      <Button layoutX="73.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleProfileButton" style="-fx-background-color: transparent;" text="☻ Profile" textFill="#e1f434">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
