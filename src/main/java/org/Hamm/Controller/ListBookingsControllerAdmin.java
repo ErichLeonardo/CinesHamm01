@@ -17,6 +17,7 @@ import org.Hamm.Model.Domain.Car;
 import org.Hamm.Model.Domain.Film;
 import org.Hamm.Model.Domain.Reservation;
 import org.Hamm.Model.Domain.User;
+import org.Hamm.Model.StateDTO;
 import org.Hamm.Test.Test2View;
 
 import java.io.IOException;
@@ -98,7 +99,6 @@ public class ListBookingsControllerAdmin {
         lastFilmId = filmId;
     }
 
-
     public void setUserId(int userId) {
         idUserField.setText(String.valueOf(userId));
     }
@@ -153,7 +153,28 @@ public class ListBookingsControllerAdmin {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void handleClearButton() {
+        idUserField.clear();
+        tuitionCarField.clear();
+        idFilmField.clear();
+
+    }
+    @FXML
+    public void initialize() {
+        if(StateDTO.iduser!=null){
+            idUserField.setText(StateDTO.iduser.toString());
         }
+        if(StateDTO.idcar!=null){
+            tuitionCarField.setText(StateDTO.idcar.toString());
+        }
+        if(StateDTO.idfilm!=null){
+            idFilmField.setText(StateDTO.idfilm.toString());
+        }
+
+    }
 
     @FXML
     public void handleAddButton() {
@@ -228,24 +249,6 @@ public class ListBookingsControllerAdmin {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    @FXML
-    public void handleClearButton() {
-        idUserField.clear();
-        tuitionCarField.clear();
-        idFilmField.clear();
-
-        // Restaurar los valores anteriores si existen
-        if (lastUserId != null) {
-            idUserField.setText(lastUserId);
-        }
-        if (lastCarTuition != null) {
-            tuitionCarField.setText(lastCarTuition);
-        }
-        if (lastFilmId != null) {
-            idFilmField.setText(lastFilmId);
         }
     }
 
