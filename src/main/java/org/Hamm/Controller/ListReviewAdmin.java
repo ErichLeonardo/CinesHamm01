@@ -42,6 +42,9 @@ public class ListReviewAdmin {
         NameOfTheNameColumn.setCellValueFactory(new PropertyValueFactory<>("Review"));
         ReviewColumn.setCellValueFactory(new PropertyValueFactory<>("NameOfTheName"));
 
+        // Establecer estilo CSS para centrar el contenido de las columnas
+        Id_review.setStyle("-fx-alignment: CENTER;");
+        NameOfTheNameColumn.setStyle("-fx-alignment: CENTER;");
 
         reviewDAO = new ReviewDAO(connection);
 
