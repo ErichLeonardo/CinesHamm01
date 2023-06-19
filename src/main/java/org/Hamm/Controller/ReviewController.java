@@ -1,19 +1,12 @@
 package org.Hamm.Controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import org.Hamm.Model.DAO.CarDAO;
 import org.Hamm.Model.DAO.ReviewDAO;
-import org.Hamm.Model.Domain.Car;
 import org.Hamm.Model.Domain.Review;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -51,7 +44,7 @@ public class ReviewController {
             String NameOfTheName = movieTitleField.getText();
             String Review = movieReviewField.getText();
 
-            Review newReview = new Review(NameOfTheName, Review);
+            Review newReview = new Review(0, NameOfTheName, Review); // El id_review se establece en 0 para que sea autoincremental en la base de datos
             reviewDAO.addReview(newReview);
 
             statusLabel.setText("Review added successfully!");

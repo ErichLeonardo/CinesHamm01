@@ -24,6 +24,9 @@ public class ListReviewAdmin {
 
     @FXML
     private TableView<Review> tableView;
+
+    @FXML
+    private TableColumn<Review, Integer> Id_review;
     @FXML
     private TableColumn<Review, String> NameOfTheNameColumn;
     @FXML
@@ -35,6 +38,7 @@ public class ListReviewAdmin {
     private ReviewDAO reviewDAO;
 
     public void execute() {
+        Id_review.setCellValueFactory(new PropertyValueFactory<>("Id_review"));
         NameOfTheNameColumn.setCellValueFactory(new PropertyValueFactory<>("Review"));
         ReviewColumn.setCellValueFactory(new PropertyValueFactory<>("NameOfTheName"));
 
@@ -87,7 +91,6 @@ public class ListReviewAdmin {
         tableView.getItems().remove(selectedReview);
         System.out.println("Review eliminada: " + selectedReview);
     }
-
 
 
 }

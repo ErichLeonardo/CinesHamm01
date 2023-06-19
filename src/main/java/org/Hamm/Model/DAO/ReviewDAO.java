@@ -19,16 +19,17 @@ public class ReviewDAO {
     public List<Review> findAll() throws SQLException {
         List<Review> reviews = new ArrayList<>();
 
-        String sql = "SELECT name_of_the_movie, review FROM review";
+        String sql = "SELECT id_review, name_of_the_movie, review FROM review";
 
         try (PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
+                int idReview = resultSet.getInt("id_review");
                 String movieName = resultSet.getString("name_of_the_movie");
                 String reviewText = resultSet.getString("review");
 
-                Review review = new Review(reviewText, movieName);
+                Review review = new Review(idReview, movieName, reviewText);
                 reviews.add(review);
             }
         }
@@ -37,11 +38,12 @@ public class ReviewDAO {
     }
 
     public void addReview(Review review) throws SQLException {
-        String sql = "INSERT INTO review (name_of_the_movie, review) VALUES (?, ?)";
+        String sql = "INSERT INTO review (id_review, name_of_the_movie, review) VALUES (?, ?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, review.getNameOfTheName());
-            statement.setString(2, review.getReview());
+            statement.setInt(1, review.getId_review());
+            statement.setString(2, review.getNameOfTheName());
+            statement.setString(3, review.getReview());
 
             statement.executeUpdate();
         }
@@ -50,17 +52,18 @@ public class ReviewDAO {
     public List<Review> search(String newValue) throws SQLException {
         List<Review> matchingReviews = new ArrayList<>();
 
-        String sql = "SELECT name_of_the_movie, review FROM review WHERE name_of_the_movie LIKE ?";
+        String sql = "SELECT id_review, name_of_the_movie, review FROM review WHERE name_of_the_movie LIKE ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, "%" + newValue + "%");
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
+                    int idReview = resultSet.getInt("id_review");
                     String movieName = resultSet.getString("name_of_the_movie");
                     String reviewText = resultSet.getString("review");
 
-                    Review review = new Review(reviewText, movieName);
+                    Review review = new Review(idReview, movieName, reviewText);
                     matchingReviews.add(review);
                 }
             }
@@ -69,15 +72,12 @@ public class ReviewDAO {
     }
 
     public void deleteReview(Review review) throws SQLException {
-        String sql = "DELETE FROM review WHERE name_of_the_movie = ? AND review = ?";
+        String sql = "DELETE FROM review WHERE id_review = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, review.getNameOfTheName());
-            statement.setString(2, review.getReview());
+            statement.setInt(1, review.getId_review());
 
             statement.executeUpdate();
         }
     }
-
-
 }

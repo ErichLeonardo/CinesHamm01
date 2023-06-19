@@ -29,6 +29,7 @@
         </ImageView>
         <TableView fx:id="tableView" layoutX="46.0" layoutY="72.0" prefHeight="320.0" prefWidth="900.0">
             <columns>
+                <TableColumn fx:id="Id_review" prefWidth="172.79998779296875" text="Id_review" />
                 <TableColumn fx:id="NameOfTheNameColumn" prefWidth="172.79998779296875" text="NameOfTheName" />
                 <TableColumn fx:id="ReviewColumn" prefWidth="726.3999786376953" text="Review" />
             </columns>
