@@ -294,6 +294,20 @@ public class UserDAO implements DAO<User> {
         return PasswordUtils.verifyPassword(plainPassword, hashedPassword);
     }
 
+    public User updateEmail(User user, String newEmail) throws SQLException {
+        try (PreparedStatement ps = connection.prepareStatement("UPDATE User SET email = ? WHERE id_user = ?")) {
+            ps.setString(1, newEmail);
+            ps.setInt(2, user.getId_user());
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                user.setEmail(newEmail);
+                return user;
+            }
+        }
+        return null;  // No se pudo actualizar el correo electrónico
+    }
+
+
     @Override
     public void close() throws Exception {
 //        if (connection != null) {

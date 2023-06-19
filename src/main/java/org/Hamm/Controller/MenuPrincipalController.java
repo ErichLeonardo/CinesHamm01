@@ -20,6 +20,7 @@ public class MenuPrincipalController {
 
     private int userId;
     private Connection connection;
+    private LoginController loginController;
 
     public void initialize() {
         userIdLabel.setText("ID user: " + userId);
@@ -102,6 +103,9 @@ public class MenuPrincipalController {
             // Obtener el controlador del archivo FXML cargado
             ChangeEmail controller = fxmlLoader.getController();
 
+            // Establecer el controlador de inicio de sesión en el controlador ChangeEmail
+            controller.setLoginController(loginController); // Reemplaza "loginController" con la referencia adecuada al controlador de inicio de sesión
+
             // Obtener el correo electrónico del usuario y establecerlo en el campo emailField
             UserDAO userDAO = new UserDAO(); // Suponiendo que tienes una clase UserDAO para acceder a la base de datos
             User user = userDAO.findById(userId); // Obtener el usuario según el ID del menú principal
@@ -119,6 +123,7 @@ public class MenuPrincipalController {
             throw new RuntimeException(e);
         }
     }
+
 
 
     /**
