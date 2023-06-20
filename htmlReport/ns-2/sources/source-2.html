@@ -1,0 +1,168 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CarController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.Hamm.Controller</a>
+</div>
+
+<h1>Coverage Summary for Class: CarController (org.Hamm.Controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CarController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.Hamm.Controller;
+&nbsp;
+&nbsp;import java.sql.Connection;
+&nbsp;import java.sql.DriverManager;
+&nbsp;import java.sql.SQLException;
+&nbsp;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.scene.control.Label;
+&nbsp;import javafx.scene.control.TextField;
+&nbsp;import org.Hamm.Model.DAO.CarDAO;
+&nbsp;import org.Hamm.Model.Domain.Car;
+&nbsp;import org.Hamm.Utils.Validator;
+&nbsp;
+<b class="nc">&nbsp;public class CarController {</b>
+&nbsp;    private Connection connection;
+&nbsp;    private CarDAO carDAO;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField tuitionField;
+&nbsp;    @FXML
+&nbsp;    private TextField brandField;
+&nbsp;    @FXML
+&nbsp;    private TextField modelField;
+&nbsp;    @FXML
+&nbsp;    private Label statusLabel;
+&nbsp;
+&nbsp;    public void setConnection(Connection connection) {
+<b class="nc">&nbsp;        this.connection = connection;</b>
+<b class="nc">&nbsp;        carDAO = new CarDAO(connection);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Button for add a new car
+&nbsp;     */
+&nbsp;    @FXML
+&nbsp;    private void handleAddCar() {
+<b class="nc">&nbsp;        String url = &quot;jdbc:mysql://localhost:3306/CinesHamm&quot;;</b>
+<b class="nc">&nbsp;        String user = &quot;root&quot;;</b>
+<b class="nc">&nbsp;        String pwd = &quot;&quot;;</b>
+&nbsp;
+<b class="nc">&nbsp;        try (Connection connection = DriverManager.getConnection(url, user, pwd)) {</b>
+<b class="nc">&nbsp;            CarDAO carDAO = new CarDAO(connection);</b>
+&nbsp;
+<b class="nc">&nbsp;            String tuition = tuitionField.getText();</b>
+<b class="nc">&nbsp;            String brand = brandField.getText();</b>
+<b class="nc">&nbsp;            String model = modelField.getText();</b>
+<b class="nc">&nbsp;            boolean isRented = false;</b>
+&nbsp;
+<b class="nc">&nbsp;            if (Validator.validateTuition(tuition)) {</b>
+<b class="nc">&nbsp;                Car newCar = new Car(tuition, brand, model, isRented);</b>
+<b class="nc">&nbsp;                carDAO.insert(newCar);</b>
+&nbsp;
+<b class="nc">&nbsp;                statusLabel.setText(&quot;Car added successfully!&quot;);</b>
+<b class="nc">&nbsp;                tuitionField.clear();</b>
+<b class="nc">&nbsp;                brandField.clear();</b>
+<b class="nc">&nbsp;                modelField.clear();</b>
+<b class="nc">&nbsp;            } else {</b>
+<b class="nc">&nbsp;                statusLabel.setText(&quot;Invalid tuition!&quot;);</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;        } catch (SQLException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:45</div>
+</div>
+</body>
+</html>

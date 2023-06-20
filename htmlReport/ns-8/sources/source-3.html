@@ -1,0 +1,147 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > TestFILM</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.Hamm.Test</a>
+</div>
+
+<h1>Coverage Summary for Class: TestFILM (org.Hamm.Test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TestFILM</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.Hamm.Test;
+&nbsp;
+&nbsp;import org.Hamm.Model.DAO.FilmDAO;
+&nbsp;import org.Hamm.Model.Domain.Film;
+&nbsp;
+&nbsp;
+&nbsp;import java.sql.Connection;
+&nbsp;import java.sql.DriverManager;
+&nbsp;import java.sql.SQLException;
+&nbsp;import java.sql.Time;
+&nbsp;import java.util.List;
+&nbsp;
+<b class="nc">&nbsp;public class TestFILM {</b>
+&nbsp;    public static void main(String[] args) {
+<b class="nc">&nbsp;        String url = &quot;jdbc:mysql://localhost:3306/CinesHamm&quot;;</b>
+<b class="nc">&nbsp;        String user = &quot;root&quot;;</b>
+<b class="nc">&nbsp;        String pwd = &quot;&quot;;</b>
+&nbsp;
+<b class="nc">&nbsp;        try (Connection connection = DriverManager.getConnection(url, user, pwd)) {</b>
+<b class="nc">&nbsp;            FilmDAO FilmDAO = new FilmDAO(connection);</b>
+&nbsp;
+&nbsp;            /*Film newFilm = new Film(1, &quot;The Matrix&quot;, &quot;Action&quot;, Time.valueOf(&quot;02:16:00&quot;), &quot;A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.&quot;);
+&nbsp;            FilmDAO.insert(newFilm);
+&nbsp;            List&lt;Film&gt; films = FilmDAO.findAll();
+&nbsp;            System.out.println(&quot;Todas las películas:&quot;);
+&nbsp;            for (Film film : films) {
+&nbsp;                System.out.println(film);
+&nbsp;            }
+&nbsp;            Film film3 = new Film(3, &quot;The Godfather&quot;, &quot;Crime, Drama&quot;, Time.valueOf(&quot;02:55:00&quot;), &quot;The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.&quot;);
+&nbsp;            Film film4 = new Film(4, &quot;The Shawshank Redemption&quot;, &quot;Drama&quot;, Time.valueOf(&quot;02:22:00&quot;), &quot;Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.&quot;);
+&nbsp;            Film film5 = new Film(5, &quot;The Dark Knight&quot;, &quot;Action, Crime, Drama&quot;, Time.valueOf(&quot;02:32:00&quot;), &quot;When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.&quot;);
+&nbsp;            Film film6 = new Film(6, &quot;The Lord of the Rings: The Fellowship of the Ring&quot;, &quot;Action, Adventure, Drama&quot;, Time.valueOf(&quot;02:58:00&quot;), &quot;A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.&quot;);
+&nbsp;            FilmDAO.insert(film3);
+&nbsp;            FilmDAO.insert(film4);
+&nbsp;            FilmDAO.insert(film5);
+&nbsp;            FilmDAO.insert(film6);*/
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        } catch (SQLException e) {</b>
+<b class="nc">&nbsp;            throw new RuntimeException(e);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:45</div>
+</div>
+</body>
+</html>
