@@ -177,6 +177,7 @@ public class ListBookingsController {
             tuitionCarField.clear();
             idFilmField.clear();
 
+            labelError.setText("Reservation inserted successfully.");
         } catch (SQLException e) {
             String errorMessage = e.getMessage();
             showError(errorMessage);
