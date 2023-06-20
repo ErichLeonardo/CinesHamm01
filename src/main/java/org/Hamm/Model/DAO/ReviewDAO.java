@@ -42,7 +42,7 @@ public class ReviewDAO {
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, review.getId_review());
-            statement.setString(2, review.getNameOfTheName());
+            statement.setString(2, review.getNameOfTheFilm());
             statement.setString(3, review.getReview());
 
             statement.executeUpdate();

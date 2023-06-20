@@ -28,7 +28,7 @@ public class ListReviewAdmin {
     @FXML
     private TableColumn<Review, Integer> Id_review;
     @FXML
-    private TableColumn<Review, String> NameOfTheNameColumn;
+    private TableColumn<Review, String> NameOfTheFilmColumn;
     @FXML
     private TableColumn<Review, String> ReviewColumn;
 
@@ -39,12 +39,12 @@ public class ListReviewAdmin {
 
     public void execute() {
         Id_review.setCellValueFactory(new PropertyValueFactory<>("Id_review"));
-        NameOfTheNameColumn.setCellValueFactory(new PropertyValueFactory<>("Review"));
-        ReviewColumn.setCellValueFactory(new PropertyValueFactory<>("NameOfTheName"));
+        NameOfTheFilmColumn.setCellValueFactory(new PropertyValueFactory<>("Review"));
+        ReviewColumn.setCellValueFactory(new PropertyValueFactory<>("NameOfTheFilm"));
 
         // Establecer estilo CSS para centrar el contenido de las columnas
         Id_review.setStyle("-fx-alignment: CENTER;");
-        NameOfTheNameColumn.setStyle("-fx-alignment: CENTER;");
+        NameOfTheFilmColumn.setStyle("-fx-alignment: CENTER;");
 
         reviewDAO = new ReviewDAO(connection);
 

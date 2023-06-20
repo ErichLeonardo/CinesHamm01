@@ -5,14 +5,14 @@ import java.util.Objects;
 public class Review {
 
     private int Id_review;
-    private String NameOfTheName;
+    private String NameOfTheFilm;
     private String Review;
 
 
 
-    public Review(int id_review, String nameOfTheName, String review) {
+    public Review(int id_review, String nameOfTheFilm, String review) {
         Id_review = id_review;
-        NameOfTheName = nameOfTheName;
+        NameOfTheFilm = nameOfTheFilm;
         Review = review;
     }
 
@@ -24,12 +24,12 @@ public class Review {
         Id_review = id_review;
     }
 
-    public String getNameOfTheName() {
-        return NameOfTheName;
+    public String getNameOfTheFilm() {
+        return NameOfTheFilm;
     }
 
-    public void setNameOfTheName(String nameOfTheName) {
-        NameOfTheName = nameOfTheName;
+    public void setNameOfTheFilm(String nameOfTheFilm) {
+        NameOfTheFilm = nameOfTheFilm;
     }
 
     public String getReview() {
@@ -57,7 +57,7 @@ public class Review {
     public String toString() {
         return "Review{" +
                 "Id_review=" + Id_review +
-                ", NameOfTheName='" + NameOfTheName + '\'' +
+                ", NameOfTheName='" + NameOfTheFilm + '\'' +
                 ", Review='" + Review + '\'' +
                 '}';
     }

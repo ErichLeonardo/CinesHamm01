@@ -30,7 +30,7 @@
         <TableView fx:id="tableView" layoutX="46.0" layoutY="72.0" prefHeight="320.0" prefWidth="900.0">
             <columns>
                 <TableColumn fx:id="Id_review" prefWidth="91.20003890991211" text="Id_review" />
-                <TableColumn fx:id="NameOfTheNameColumn" prefWidth="254.3999786376953" text="NameOfTheName" />
+                <TableColumn fx:id="NameOfTheFilmColumn" prefWidth="254.3999786376953" text="NameOfTheFilm" />
                 <TableColumn fx:id="ReviewColumn" prefWidth="726.3999786376953" text="Review" />
             </columns>
         </TableView>
