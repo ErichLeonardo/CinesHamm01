@@ -1,0 +1,153 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ConnectionMySQL</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.Hamm.Model.Connections</a>
+</div>
+
+<h1>Coverage Summary for Class: ConnectionMySQL (org.Hamm.Model.Connections)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ConnectionMySQL</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.Hamm.Model.Connections;
+&nbsp;
+&nbsp;import org.Hamm.Model.Connections.ConexionData;
+&nbsp;
+&nbsp;import javax.xml.bind.JAXBContext;
+&nbsp;import javax.xml.bind.JAXBException;
+&nbsp;import javax.xml.bind.Unmarshaller;
+&nbsp;import java.io.File;
+&nbsp;import java.sql.Connection;
+&nbsp;import java.sql.DriverManager;
+&nbsp;import java.sql.SQLException;
+&nbsp;
+&nbsp;public class ConnectionMySQL {
+<b class="nc">&nbsp;    private String file = &quot;conexion.xml&quot;;</b>
+&nbsp;    private static ConnectionMySQL _newInstance;
+&nbsp;    private static Connection con;
+&nbsp;
+<b class="nc">&nbsp;    private ConnectionMySQL() {</b>
+<b class="nc">&nbsp;        ConexionData cd = loadXML();</b>
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            con = DriverManager.getConnection(cd.getServer()+&quot;/&quot;+cd.getDatabase(),cd.getUsername(),cd.getPassword());</b>
+<b class="nc">&nbsp;        } catch (SQLException e) {</b>
+<b class="nc">&nbsp;            con=null;</b>
+<b class="nc">&nbsp;            throw new RuntimeException(e);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static Connection getConnect() {
+&nbsp;       // if(_newInstance==null){
+<b class="nc">&nbsp;            _newInstance=new ConnectionMySQL();</b>
+&nbsp;       // }
+<b class="nc">&nbsp;        return con;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ConexionData loadXML() {
+<b class="nc">&nbsp;        ConexionData con = new ConexionData();</b>
+&nbsp;        JAXBContext jaxbContext;
+&nbsp;        try{
+<b class="nc">&nbsp;            jaxbContext = JAXBContext.newInstance(ConexionData.class);</b>
+<b class="nc">&nbsp;            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();</b>
+<b class="nc">&nbsp;            con = (ConexionData) jaxbUnmarshaller.unmarshal(new File(file));</b>
+<b class="nc">&nbsp;        } catch (JAXBException e) {</b>
+<b class="nc">&nbsp;            throw new RuntimeException(e);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        return con;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:45</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,307 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ListCarControllerAdmin</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.Hamm.Controller</a>
+</div>
+
+<h1>Coverage Summary for Class: ListCarControllerAdmin (org.Hamm.Controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ListCarControllerAdmin</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/95)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.Hamm.Controller;
+&nbsp;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.fxml.FXMLLoader;
+&nbsp;import javafx.scene.Parent;
+&nbsp;import javafx.scene.Scene;
+&nbsp;import javafx.scene.control.*;
+&nbsp;import javafx.scene.control.cell.PropertyValueFactory;
+&nbsp;import javafx.scene.input.KeyCode;
+&nbsp;import javafx.scene.input.KeyEvent;
+&nbsp;import javafx.scene.input.MouseButton;
+&nbsp;import javafx.scene.input.MouseEvent;
+&nbsp;import javafx.stage.Stage;
+&nbsp;import org.Hamm.Model.Connections.ConnectionMySQL;
+&nbsp;import org.Hamm.Model.DAO.CarDAO;
+&nbsp;import org.Hamm.Model.DAO.ReservationDAO;
+&nbsp;import org.Hamm.Model.Domain.Car;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.sql.Connection;
+&nbsp;import java.sql.SQLException;
+&nbsp;import java.util.List;
+&nbsp;
+<b class="nc">&nbsp;public class ListCarControllerAdmin {</b>
+&nbsp;    private Connection connection;
+&nbsp;    public void setConnection(Connection connection) {
+<b class="nc">&nbsp;        this.connection = connection;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TableView&lt;Car&gt; tableView;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Car, Integer&gt; idColumn;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Car, String&gt; tuitionColumn;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Car, String&gt; brandColumn;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Car, String&gt; modelColumn;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Car, Boolean&gt; rentedColumn;
+&nbsp;    @FXML
+&nbsp;    private TextField tuitionTextField;
+&nbsp;    @FXML
+&nbsp;    private TextField brandTextField;
+&nbsp;    @FXML
+&nbsp;    private TextField modelTextField;
+&nbsp;    @FXML
+&nbsp;    private CheckBox isRentedCheckBox;
+&nbsp;    @FXML
+&nbsp;    private TextField searchField;
+&nbsp;
+&nbsp;    private CarDAO carDAO;
+&nbsp;
+&nbsp;    public void execute() {
+<b class="nc">&nbsp;        idColumn.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;id_car&quot;));</b>
+<b class="nc">&nbsp;        tuitionColumn.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;tuition&quot;));</b>
+<b class="nc">&nbsp;        brandColumn.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;brand&quot;));</b>
+<b class="nc">&nbsp;        modelColumn.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;model&quot;));</b>
+<b class="nc">&nbsp;        rentedColumn.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;rented&quot;));</b>
+&nbsp;
+<b class="nc">&nbsp;        carDAO = new CarDAO();</b>
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            Connection connection = ConnectionMySQL.getConnect();</b>
+<b class="nc">&nbsp;            carDAO = new CarDAO(connection);</b>
+<b class="nc">&nbsp;            List&lt;Car&gt; cars = carDAO.findAll();</b>
+<b class="nc">&nbsp;            tableView.getItems().clear();</b>
+<b class="nc">&nbsp;            tableView.getItems().addAll(cars);</b>
+<b class="nc">&nbsp;        } catch (SQLException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        searchField.textProperty().addListener((observable, oldValue, newValue) -&gt; {</b>
+&nbsp;            try {
+<b class="nc">&nbsp;                List&lt;Car&gt; cars = carDAO.search(newValue);</b>
+<b class="nc">&nbsp;                tableView.getItems().clear();</b>
+<b class="nc">&nbsp;                tableView.getItems().addAll(cars);</b>
+<b class="nc">&nbsp;            } catch (SQLException e) {</b>
+<b class="nc">&nbsp;                e.printStackTrace();</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        tableView.setOnMouseClicked(event -&gt; {</b>
+<b class="nc">&nbsp;            if (event.getClickCount() == 2) {</b>
+<b class="nc">&nbsp;                handleCarDoubleClick();</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    public void handleDeleteButton() {
+<b class="nc">&nbsp;        Car selectedCar = tableView.getSelectionModel().getSelectedItem();</b>
+<b class="nc">&nbsp;        if (selectedCar != null) {</b>
+&nbsp;            try {
+<b class="nc">&nbsp;                carDAO.delete(selectedCar);</b>
+<b class="nc">&nbsp;                tableView.getItems().remove(selectedCar);</b>
+<b class="nc">&nbsp;            } catch (SQLException e) {</b>
+<b class="nc">&nbsp;                e.printStackTrace();</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    public void handleAddButton() {
+<b class="nc">&nbsp;        String tuition = tuitionTextField.getText();</b>
+<b class="nc">&nbsp;        String brand = brandTextField.getText();</b>
+<b class="nc">&nbsp;        String model = modelTextField.getText();</b>
+<b class="nc">&nbsp;        boolean isRented = isRentedCheckBox.isSelected();</b>
+&nbsp;
+<b class="nc">&nbsp;        Car newCar = new Car(tuition, brand, model, isRented);</b>
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            carDAO.insert(newCar);</b>
+<b class="nc">&nbsp;            clearInputFields();</b>
+<b class="nc">&nbsp;            tableView.getItems().add(newCar);</b>
+<b class="nc">&nbsp;        } catch (SQLException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    public void handleUpdateButton() {
+<b class="nc">&nbsp;        Car selectedCar = tableView.getSelectionModel().getSelectedItem();</b>
+<b class="nc">&nbsp;        if (selectedCar != null) {</b>
+<b class="nc">&nbsp;            String tuition = tuitionTextField.getText();</b>
+<b class="nc">&nbsp;            String brand = brandTextField.getText();</b>
+<b class="nc">&nbsp;            String model = modelTextField.getText();</b>
+<b class="nc">&nbsp;            boolean isRented = isRentedCheckBox.isSelected();</b>
+&nbsp;
+<b class="nc">&nbsp;            selectedCar.setTuition(tuition);</b>
+<b class="nc">&nbsp;            selectedCar.setBrand(brand);</b>
+<b class="nc">&nbsp;            selectedCar.setModel(model);</b>
+<b class="nc">&nbsp;            selectedCar.setRented(isRented);</b>
+&nbsp;
+&nbsp;            try {
+<b class="nc">&nbsp;                carDAO.update(selectedCar);</b>
+<b class="nc">&nbsp;                clearInputFields();</b>
+<b class="nc">&nbsp;                tableView.refresh();</b>
+<b class="nc">&nbsp;            } catch (SQLException e) {</b>
+<b class="nc">&nbsp;                e.printStackTrace();</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    public void handleKeyReleased(KeyEvent event) {
+<b class="nc">&nbsp;        if (event.getCode() == KeyCode.C) {</b>
+<b class="nc">&nbsp;            Car selectedCar = tableView.getSelectionModel().getSelectedItem();</b>
+<b class="nc">&nbsp;            if (selectedCar != null) {</b>
+<b class="nc">&nbsp;                tuitionTextField.setText(selectedCar.getTuition());</b>
+<b class="nc">&nbsp;                brandTextField.setText(selectedCar.getBrand());</b>
+<b class="nc">&nbsp;                modelTextField.setText(selectedCar.getModel());</b>
+<b class="nc">&nbsp;                isRentedCheckBox.setSelected(selectedCar.isRented());</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private void clearInputFields() {
+<b class="nc">&nbsp;        tuitionTextField.clear();</b>
+<b class="nc">&nbsp;        brandTextField.clear();</b>
+<b class="nc">&nbsp;        modelTextField.clear();</b>
+<b class="nc">&nbsp;        isRentedCheckBox.setSelected(false);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    public void handleSearchButton() {
+<b class="nc">&nbsp;        String searchTerm = searchField.getText();</b>
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            List&lt;Car&gt; cars = carDAO.search(searchTerm);</b>
+<b class="nc">&nbsp;            tableView.getItems().clear();</b>
+<b class="nc">&nbsp;            tableView.getItems().addAll(cars);</b>
+<b class="nc">&nbsp;        } catch (SQLException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void handleCarDoubleClick() {
+<b class="nc">&nbsp;        Car selectedCar = tableView.getSelectionModel().getSelectedItem();</b>
+<b class="nc">&nbsp;        if (selectedCar != null) {</b>
+&nbsp;            try {
+<b class="nc">&nbsp;                FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/org/Hamm/Controller/ListBookingsAdmin.fxml&quot;));</b>
+<b class="nc">&nbsp;                Parent root = loader.load();</b>
+&nbsp;
+<b class="nc">&nbsp;                ListBookingsControllerAdmin bookingsController = loader.getController();</b>
+<b class="nc">&nbsp;                bookingsController.setConnection(connection);</b>
+<b class="nc">&nbsp;                bookingsController.setCarTuiton(selectedCar.getTuition());</b>
+<b class="nc">&nbsp;                bookingsController.execute();</b>
+&nbsp;
+<b class="nc">&nbsp;                Stage stage = (Stage) tableView.getScene().getWindow();</b>
+<b class="nc">&nbsp;                stage.close();</b>
+&nbsp;
+<b class="nc">&nbsp;                Stage bookingsStage = new Stage();</b>
+<b class="nc">&nbsp;                bookingsStage.setTitle(&quot;Bookings List&quot;);</b>
+<b class="nc">&nbsp;                bookingsStage.setScene(new Scene(root, 880, 380));</b>
+<b class="nc">&nbsp;                bookingsStage.show();</b>
+<b class="nc">&nbsp;            } catch (IOException e) {</b>
+<b class="nc">&nbsp;                e.printStackTrace();</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:45</div>
+</div>
+</body>
+</html>
