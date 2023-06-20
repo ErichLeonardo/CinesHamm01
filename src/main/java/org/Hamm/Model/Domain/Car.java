@@ -111,4 +111,5 @@ public class Car {
     public int hashCode() {
         return Objects.hash(id_car, tuition);
     }
+
 }
