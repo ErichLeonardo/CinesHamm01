@@ -94,6 +94,9 @@ public class MenuPrincipalController {
         }
     }
 
+    /**
+     * Method for open profileview where u can change your email.
+     */
     @FXML
     public void handleProfileButton() {
         try {

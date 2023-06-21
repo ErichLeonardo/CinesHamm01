@@ -158,6 +158,10 @@ public class ListUserControllerAdmin {
         clearInputFields();
     }
 
+    /**
+     * Method for copy one selected user and bring the atributtes to the fields.
+     * @param event
+     */
     @FXML
     public void handleKeyReleased(KeyEvent event) {
         if (event.getCode() == KeyCode.C) {
@@ -172,6 +176,9 @@ public class ListUserControllerAdmin {
         }
     }
 
+    /**
+     * Method for clear the fields.
+     */
     private void clearInputFields() {
         emailTextField.clear();
         passwordTextField.clear();
@@ -227,6 +234,9 @@ public class ListUserControllerAdmin {
         tableView.getItems().add(newUser);
     }
 
+    /**
+     * Method for search one user with the button
+     */
     @FXML
     public void handleSearchButton() {
         String searchText = searchField.getText(); // Obtener el texto de búsqueda desde un campo de texto
@@ -241,6 +251,9 @@ public class ListUserControllerAdmin {
         }
     }
 
+    /**
+     * Method for bring a film to the booking view.
+     */
     public void handleUserDoubleClick() {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {

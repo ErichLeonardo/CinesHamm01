@@ -151,6 +151,10 @@ public class ListFilmControllerAdmin {
         }
     }
 
+    /**
+     * Method for copy the selected item in the fields.
+     * @param event
+     */
     @FXML
     public void handleKeyReleased(KeyEvent event) {
         if (event.getCode() == KeyCode.C) {
@@ -177,6 +181,9 @@ public class ListFilmControllerAdmin {
         synopsisTextField.clear();
     }
 
+    /**
+     * Method for open the select film and see the synopsis
+     */
     @FXML
     public void showSynopsisDialog() {
         Film selectedFilm = tableView.getSelectionModel().getSelectedItem();
@@ -208,6 +215,9 @@ public class ListFilmControllerAdmin {
         }
     }
 
+    /**
+     * Method to open review view where u can see all the reviews and delete one of then with the delete button
+     */
     @FXML
     private void showAllReviews() {
         try {
@@ -232,8 +242,9 @@ public class ListFilmControllerAdmin {
         }
     }
 
-
-
+    /**
+     * Method for search with the button
+     */
     @FXML
     public void handleSearchButton() {
         String searchTerm = searchField.getText();
@@ -247,6 +258,9 @@ public class ListFilmControllerAdmin {
         }
     }
 
+    /**
+     * Method for bring a film to the booking view.
+     */
     public void handleUserDoubleClick() {
         Film selectedFilm = tableView.getSelectionModel().getSelectedItem();
         if (selectedFilm != null) {

@@ -33,6 +33,9 @@ public class ReviewController {
         // Lógica de inicialización, si es necesario
     }
 
+    /**
+     * Method for add a review
+     */
     @FXML
     void handleAddButton() {
         String url = "jdbc:mysql://localhost:3306/CinesHamm";
@@ -56,6 +59,10 @@ public class ReviewController {
         }
     }
 
+    /**
+     * Method for have the movie title automatically
+     * @param movieTitle
+     */
     public void setMovieTitle(String movieTitle) {
         movieTitleField.setText(movieTitle);
     }

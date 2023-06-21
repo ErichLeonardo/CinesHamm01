@@ -248,6 +248,13 @@ public class UserDAO implements DAO<User> {
         return entity;
     }
 
+    /**
+     * Searches for users based on the provided search text.
+     *
+     * @param searchText the text to search for
+     * @return a list of User objects matching the search criteria
+     * @throws SQLException if any SQL error occurs
+     */
     public List<User> search(String searchText) throws SQLException {
         List<User> userList = new ArrayList<>();
         String SEARCH_QUERY = "SELECT id_user, email, name, surname, phone, isAdmin FROM User " +
@@ -294,6 +301,14 @@ public class UserDAO implements DAO<User> {
         return PasswordUtils.verifyPassword(plainPassword, hashedPassword);
     }
 
+    /**
+     * Updates the email of a user.
+     *
+     * @param user     the User object to be updated
+     * @param newEmail the new email address to be set
+     * @return the updated User object if the email was successfully updated, null otherwise
+     * @throws SQLException if any SQL error occurs
+     */
     public User updateEmail(User user, String newEmail) throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement("UPDATE User SET email = ? WHERE id_user = ?")) {
             ps.setString(1, newEmail);

@@ -233,6 +233,13 @@ public class CarDAO implements DAO<Car> {
         }
     }
 
+    /**
+     * Performs a search for Car records in the database based on a search text.
+     *
+     * @param searchText the search text
+     * @return a list of Car objects that match the search text
+     * @throws SQLException if any SQL error occurs
+     */
     public List<Car> search(String searchText) throws SQLException {
         List<Car> carList = new ArrayList<>();
         String SEARCH_QUERY = "SELECT id_car, tuition, brand, model, isRented FROM Car " +

@@ -16,6 +16,12 @@ public class ReviewDAO {
         this.connection = connection;
     }
 
+    /**
+     * Retrieves all reviews from the database.
+     *
+     * @return a list of Review objects representing the reviews
+     * @throws SQLException if any SQL error occurs
+     */
     public List<Review> findAll() throws SQLException {
         List<Review> reviews = new ArrayList<>();
 
@@ -37,6 +43,12 @@ public class ReviewDAO {
         return reviews;
     }
 
+    /**
+     * Adds a new review to the database.
+     *
+     * @param review the Review object to be added
+     * @throws SQLException if any SQL error occurs
+     */
     public void addReview(Review review) throws SQLException {
         String sql = "INSERT INTO review (id_review, name_of_the_movie, review) VALUES (?, ?, ?)";
 
@@ -49,6 +61,13 @@ public class ReviewDAO {
         }
     }
 
+    /**
+     * Searches for reviews matching the provided movie name.
+     *
+     * @param newValue the movie name to search for
+     * @return a list of Review objects matching the search criteria
+     * @throws SQLException if any SQL error occurs
+     */
     public List<Review> search(String newValue) throws SQLException {
         List<Review> matchingReviews = new ArrayList<>();
 
@@ -71,6 +90,12 @@ public class ReviewDAO {
         return matchingReviews;
     }
 
+    /**
+     * Deletes a review from the database.
+     *
+     * @param review the Review object to be deleted
+     * @throws SQLException if any SQL error occurs
+     */
     public void deleteReview(Review review) throws SQLException {
         String sql = "DELETE FROM review WHERE id_review = ?";
 

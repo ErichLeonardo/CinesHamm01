@@ -125,6 +125,11 @@ public class ListFilmController {
         }
     }
 
+    /**
+     * Method for open the review view where u can add a review
+     * @param movieTitle
+     * @param dialog
+     */
     private void openReviewWindow(String movieTitle, Dialog<String> dialog) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Hamm/Controller/AddReview.fxml"));
@@ -144,7 +149,9 @@ public class ListFilmController {
     }
 
 
-
+    /**
+     * Method for search with the button
+     */
     @FXML
     public void handleSearchButton() {
         String searchTerm = searchField.getText();
@@ -158,6 +165,9 @@ public class ListFilmController {
         }
     }
 
+    /**
+     * Method for bring a user to the booking view.
+     */
     public void handleUserDoubleClick() {
         Film selectedFilm = tableView.getSelectionModel().getSelectedItem();
         if (selectedFilm != null) {

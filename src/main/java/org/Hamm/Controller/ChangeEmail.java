@@ -32,6 +32,9 @@ public class ChangeEmail {
         this.loginController = loginController;
     }
 
+    /**
+     * Method for change the user email.
+     */
     @FXML
     private void changeEmail() {
         String newEmail = newEmailField.getText();

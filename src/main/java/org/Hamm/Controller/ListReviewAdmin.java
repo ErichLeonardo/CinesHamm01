@@ -69,6 +69,9 @@ public class ListReviewAdmin {
         });
     }
 
+    /**
+     * Method for search a entity with the button
+     */
     @FXML
     public void handleSearchButton() {
         String searchTerm = searchField.getText();
@@ -82,6 +85,10 @@ public class ListReviewAdmin {
         }
     }
 
+    /**
+     * Method for delete one selected review with the button
+     * @throws SQLException
+     */
     @FXML
     void handleDeleteButton() throws SQLException {
         Review selectedReview = tableView.getSelectionModel().getSelectedItem();

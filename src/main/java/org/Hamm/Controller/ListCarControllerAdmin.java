@@ -156,7 +156,9 @@ public class ListCarControllerAdmin {
         }
     }
 
-
+    /**
+     * Method for clear all the fields.
+     */
     private void clearInputFields() {
         tuitionTextField.clear();
         brandTextField.clear();
@@ -164,6 +166,9 @@ public class ListCarControllerAdmin {
         isRentedCheckBox.setSelected(false);
     }
 
+    /**
+     * Method for search in the table.
+     */
     @FXML
     public void handleSearchButton() {
         String searchTerm = searchField.getText();
@@ -177,6 +182,9 @@ public class ListCarControllerAdmin {
         }
     }
 
+    /**
+     * Method for bring a car to the booking view.
+     */
     public void handleCarDoubleClick() {
         Car selectedCar = tableView.getSelectionModel().getSelectedItem();
         if (selectedCar != null) {

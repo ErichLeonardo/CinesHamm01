@@ -176,6 +176,14 @@ public class FilmDAO implements DAO<Film> {
             return null;
         }
     }
+
+    /**
+     * Performs a search for Film records in the database based on a search text.
+     *
+     * @param searchText the search text
+     * @return a list of Film objects that match the search text
+     * @throws SQLException if any SQL error occurs
+     */
     public List<Film> search(String searchText) throws SQLException {
         List<Film> filmList = new ArrayList<>();
         String SEARCH_QUERY = "SELECT * FROM Film WHERE id_film = ? OR title LIKE ? OR genre LIKE ?";

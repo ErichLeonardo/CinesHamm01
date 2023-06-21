@@ -155,6 +155,9 @@ public class ListBookingsControllerAdmin {
         }
     }
 
+    /**
+     * Method for clear all the fields.
+     */
     @FXML
     public void handleClearButton() {
         idUserField.clear();
@@ -176,6 +179,9 @@ public class ListBookingsControllerAdmin {
 
     }
 
+    /**
+     * Method for add a reservation
+     */
     @FXML
     public void handleAddButton() {
         int idUser;
@@ -237,8 +243,9 @@ public class ListBookingsControllerAdmin {
     }
 
 
-
-
+    /**
+     * Method for delete a reservation
+     */
     @FXML
     public void handleDeleteButton() {
         Reservation selectedReservation = tableView.getSelectionModel().getSelectedItem();

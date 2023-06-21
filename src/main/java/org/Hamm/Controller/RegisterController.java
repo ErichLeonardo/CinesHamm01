@@ -53,6 +53,9 @@ public class RegisterController {
         this.primaryStage = primaryStage;
     }
 
+    /**
+     * Method for register a user.
+     */
     @FXML
     private void register() {
         String email = emailField.getText();
@@ -93,6 +96,9 @@ public class RegisterController {
         }
     }
 
+    /**
+     * Method for go to the login view
+     */
     @FXML
     private void BacktoLogin() {
         try {

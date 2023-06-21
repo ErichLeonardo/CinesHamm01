@@ -284,6 +284,13 @@ public class ReservationDAO implements DAO<Reservation> {
         return count;
     }
 
+    /**
+     * Counts the number of reservations for a specific Film.
+     *
+     * @param film the Film object for which to count reservations
+     * @return the number of reservations for the Film
+     * @throws SQLException if any SQL error occurs
+     */
     public int countReservationsByFilm(Film film) throws SQLException {
         int count = 0;
         try (PreparedStatement ps = connection.prepareStatement(COUNT_RESERVATIONS_BY_FILM)) {

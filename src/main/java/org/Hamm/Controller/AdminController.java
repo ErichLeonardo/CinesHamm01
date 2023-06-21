@@ -74,6 +74,11 @@ public class AdminController {
         }
     }
 
+    /**
+     *
+     * view the euroview where u can see all the reservations
+     *
+     */
     @FXML
     public void handleEuroButtonAdmin() {
         try {
@@ -96,7 +101,9 @@ public class AdminController {
     }
 
 
-
+    /**
+     * Method for sign off
+     */
     @FXML
     public void handleSignOffAdminButton() {
         try {
