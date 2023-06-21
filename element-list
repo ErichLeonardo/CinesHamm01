@@ -1,0 +1,10 @@
+module:org.Hamm
+org.Hamm
+org.Hamm.Controller
+org.Hamm.Logger
+org.Hamm.Model
+org.Hamm.Model.Connections
+org.Hamm.Model.DAO
+org.Hamm.Model.Domain
+org.Hamm.Test
+org.Hamm.Utils
